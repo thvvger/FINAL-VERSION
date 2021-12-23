@@ -1,0 +1,250 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent()}}
+
+    <link rel="stylesheet" href="{{ asset('css/orus-ai-sonorize.css') }}">
+{% endblock %}
+
+
+{% block title %}Organisation{% endblock %}
+
+
+ {% block  organisationName %}
+
+ {% endblock %}
+{% block pageTitle %}
+    <span><i class="icon-copy fa fa-building"
+             aria-hidden="true"></i>&nbsp;{{ app.user.organisation.raisonSocial }} </span>
+{% endblock %}
+{% block body %}
+
+    <div class="row">
+
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Informations de
+                        l'organisation </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="font-weight: 800;">
+                            <li class="breadcrumb-item">Date de
+                                création: {{ organisation.createdAt|date('d/m/Y') }}</li>
+                            <li class="breadcrumb-item">Admin
+                                Principale: {{ organisation.currentAdmin ? organisation.currentAdmin.fullname :'' }}</li>
+                            <li class="breadcrumb-item" aria-current="page"> Secteur
+                                d'activite: {{ organisation.secteurActivite.designation }}</li>
+                            <li class="breadcrumb-item" aria-current="page"> Site web: {{ organisation.url }}</li>
+                            <li class="breadcrumb-item" aria-current="page"> Quota de requete
+                                : {{ organisation.limiteRequete }}</li>
+                            <li class="breadcrumb-item" aria-current="page">N° Téléphone
+                                : {{ organisation.limiteRequete }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Email
+                                : test@gmail.com
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">adresse :Avenue du nord paris</li>
+
+                        </ol>
+                    </nav>
+
+                    &nbsp;
+                    <a href="{{ path('organisation_edit', {'id':organisation.id}) }}" class="btn btn-primary"><i
+                                class="fa fa-edit"></i> Modifer l'organisation</a>
+                    <a href="{{ path('dashboard') }}" class="btn btn-primary"><i class="fa fa-home"></i> Tableau de bord</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;"></h1>
+                    <div class="row">
+                        <center>
+                            <div class="sonorizeAI-active" style="text-align:left;margin-bottom:5%;/*width: 50%;*/"></div>
+                        </center>
+                        <p style="text-align:center;">Aucune alerte de sécurité détectée.</p></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">États des services</h1>
+                    <ul style="list-style:none;padding-left: 0rem;">
+                        <li style="font-weight:bolder;"><i class="fas fa-server"></i> <b>Status API Link </b> |
+                            <button style="border-radius:4px; margin-bottom:1%;"
+                                    class="btn btn-primary btn-success btn-sm">Connecté
+                            </button>
+                        </li>
+                        <li><i class="fas fa-server"></i> <b>Status "Sonorise Link" | </b>
+                            <button style="border-radius:4px; margin-bottom:1%;"
+                                    class="btn btn-primary btn-success btn-sm">Connecté
+                            </button>
+                        </li>
+                        <li><i class="fas fa-server"></i> <b>Status "Sonorize" | </b>
+                            <button style="border-radius:4px; margin-bottom:1%;"
+                                    class="btn btn-primary btn-success btn-sm">Connecté
+                            </button>
+                        </li>
+                        <li><i class="fas fa-server"></i> <b>Status "Sonorize" | </b>
+                            <button style="border-radius:4px; margin-bottom:1%;"
+                                    class="btn btn-primary btn-success btn-sm">Connecté
+                            </button>
+                        </li>
+
+                    </ul>
+                    <p>Aucune alerte de sécuritéAucune alerte de sécurité</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Présentation de l'entreprise</h1>
+                    <p>
+                        {{ organisation.biographie }}
+                    </p>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Membre de l'organisation</h1>
+                    <table class="table-bordered table-responsive-lg table">
+                        <thead>
+                        <tr>
+                            <th>Nom et prenom</th>
+                            <th>Fonction</th>
+                            <th>Vu le</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in organisation.user.values %}
+                            <tr>
+                                <td>{{ user.fullname }}</td>
+                                <td>{{ user.fonction }}</td>
+                                <td>{{ user.dateDerniereConnexion|date('d/m/y h:i:s') }}</td>
+                                <td>
+                                    {% if  user.isOrganisationAdmin %}
+
+                                        <h4>ADMINISTRATEUR</h4>
+
+                                    {% else %}
+                                        <form method="post"
+                                              action="{{ path('administrateur_organisation', {'id': user.id}) }}">
+
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token"
+                                                   value="{{ csrf_token('administrateur_organisation_user'~user.id) }}"/>
+
+                                            <button style="width: 300px" class="btn btn-primary left"><i
+                                                        class="icon-copy fa fa-user-astronaut"
+                                                        aria-hidden="true"></i>
+                                                Definir comme Admistrateur
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+       {# <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Partenaire de l'organisation</h1>
+                    <table class="table-bordered table-responsive-lg table">
+                        <thead>
+                        <tr>
+                            <th>Desigantion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for partenaire in organisation.partenaires.values %}
+                            <tr>
+                                <td>{{ partenaire.designation }}</td>
+                                <td>
+                                    {{ include('partenaire/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>#}
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Action et statistiques</h1>
+                    {% set annonceTexte = organisation.annoncesTextes|length %}
+                    {% set annonceSonnorise = organisation.annoncesSonnorises|length %}
+                    <ul>
+                        <li>Annonce texte : {{ annonceTexte }}</li>
+                        <li>Annonces Sonorisés : {{ annonceSonnorise }}</li>
+
+                        {% if annonceTexte > 0 %}
+
+                            <li>% de sonorisation : {{ annonceSonnorise /annonceTexte * 100 }} %</li>
+                        {% else %}
+                            <li>% de sonorisation : 0 %</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Intégration web</h1>
+
+                    <div class="" id="client-embed-code-js-one"></div>
+                    <br>
+                    <div class="" id="client-embed-code-js-two"></div>
+                    <br>
+                    <div class="" id="client-embed-code-content"></div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block  javascripts %}
+    {{ parent() }}
+    <script>
+        var reference = `{{ organisation.reference }} `;
+        var selecteur = `{{ organisation.selecteur }}`;
+        var type_bouton = `{{ organisation.typeBouton }}`;
+
+
+        $('#client-embed-code-js-one').text(generateCodeToEmbedOneJs());
+        $('#client-embed-code-content').text(generateCodeToEmbedContent());
+        $('#client-embed-code-js-two').text(generateCodeToEmbedTwoJs(reference, selecteur, type_bouton));
+    </script>
+
+
+
+
+{% endblock %}
+
+

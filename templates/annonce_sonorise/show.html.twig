@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+{% set annonce = annonce_sonorise.annonce %}
+
+{% block title %}Annonce{% endblock %}
+{% block pageTitle %}Détail de l'annonce sonorisé {{ annonce.reference }}{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Informations de l'annonce sonorisé</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="font-weight: 800;">
+                            <li class="breadcrumb-item">Date de publication: {{ annonce.createdAt|date('d/m/Y') }}</li>
+                            <li class="breadcrumb-item">Date
+                                d'expiration: {{ annonce.dateExpiration|date('d/m/Y') }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Référence: {{ annonce.reference }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Type de
+                                contrat: {{ annonce.typeContrat }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Rémuneration: {{ annonce.remuneration }}€
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">Employeur: {{ annonce.organisation }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Niveau d'etude
+                                : {{ annonce.niveauEtude }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Lieu: {{ annonce.lieu }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Status:
+
+                                {% if annonce.status  == 'pending' %}
+
+                                    <button class="btn btn-primary btn-warning btn-sm">En traitement</button>
+                                {% elseif annonce.status =='sonorise' %}
+                                    <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                                {% else %}
+                                    <button class="btn  btn-danger">Expirée/Archivéé</button>
+                                {% endif %}
+                        </ol>
+                    </nav>
+
+                    <hr>
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Gérer l'annonce
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check" aria-hidden="true"></i> Relancer
+                                        l'admin</a></li>
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check" aria-hidden="true"></i> Sonoriser
+                                        l'annonce</a></li>
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check" aria-hidden="true"></i> Archiver
+                                        l'annonce</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-circle" aria-hidden="true"></i> Consulter
+                                        l'annonce</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if  annonce.estSonorise %}
+                        <div class="btn-group">
+                            {% include '_partials/playButton.html.twig' with {annonceSonorise : annonce_sonorise} %}
+                        </div>
+                    {% endif %}
+
+                    <form style="display: inline-block" action="">
+
+                        {% if annonce_sonorise.statutValidation== 'pending' %}
+                            <div class="btn-group">
+                                <button type="submit" value="validated" name="submit_button" class="btn btn-success btn-lg">Valider</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit"  value="rejected" class="btn btn-danger btn-lg" name="submit_button">Rejeté</button>
+                            </div>
+                        {% endif %}
+                        <input type="hidden" name="_token" value="{{ csrf_token('statut_annonce_sono_change') }}">
+
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Description du poste</h1>
+                    {{ annonce.description|raw }}
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Profil du candidat</h1>
+                    {{ annonce.profilRecherche }}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Salaire</h1>
+                    {{ annonce.salaire }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

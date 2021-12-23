@@ -1,0 +1,84 @@
+{% extends "site/base.html.twig" %}
+
+
+{% block breadcrumb %}
+    <aside>
+        <nav id="breadcrumb" class="w1200 marge-auto clearfix">
+            <ul class="breadcrumbs" itemscope itemtype="//schema.org/BreadcrumbList">
+                <li>Vous êtes ici :</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="index.html"><span
+                                itemprop="name">Accueil</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="#"><span
+                                itemprop="name">{% if menu %} {{ menu.libelleMenu }} {% endif %}</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><span itemprop="name">
+                        {% if page %} {{ page.libellePage }} {% endif %}
+                    </span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="w900 fright">
+        <div class="region region-content">
+            <section id="block-system-main" class="block block-system clearfix">
+
+                <div class="content">
+                    <section class="clearfix w900 marge-auto fright" id="edito-detail">
+                        <div class="clearfix contextual-links-region" id="edito-heading">
+
+                            <div id="edito-article" class="cadre-blanc clearfix">
+                                <div class="mceContentBody">
+                                    {% block contentPage %}
+
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% block pageImages %}
+                        {% endblock %}
+
+                    </section>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    {% block menuGauche %}
+        <aside id="edito-aside" class="clearfix w280 fleft">
+            <header onclick="$(this).toggleClass('expanded');">{% if menu %} {{ menu.libelleMenu }} {% endif %}</header>
+            <nav class="edito-nav">
+                <span class="triangle"></span>
+                <ul class="edito-nav-list">
+
+                    {% for pageDuMenu in pagesDuMenu %}
+                        <li class="rub-bord">
+                            <a href="{{ path('page_slug', {'slug':pageDuMenu.slug}) }}"
+                               class="link {% if page and page.slug == pageDuMenu.slug %} active {% endif %}">
+                                {{ pageDuMenu.libellePage }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </nav>
+        </aside>
+    {% endblock %}
+
+
+{% endblock %}

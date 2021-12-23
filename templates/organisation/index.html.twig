@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organisation index{% endblock %}
+
+{% block pageTitle %}Liste des organisations{% endblock %}
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="card-subtitle text-muted">Retrouvez ici toutes les organisations enregistrées </h6>
+                </div>
+                <div class="card-body">
+                    <table  class="table datatables-basic table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Raison social</th>
+                            <th>Numéro entreprise</th>
+                            <th>Limite requete</th>
+                            <th>Type_bouton</th>
+                            <th>Nombre utilisateur</th>
+                            <th>actions</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if organisations|length <1 %}
+                            <tr>
+                                <td  colspan="10">
+                                    Aucune données
+                                </td>
+                            </tr>
+                        {% else %}
+                            {% for organisation  in organisations %}
+                                <tr>
+
+                                    <td  class="text-center" style="font-weight: bolder;"  ><a  style="color: #3e4676 !important;" href="{{ path('organisation_show', {'id': organisation.id}) }}">{{ organisation.raisonSocial }}</a></td>
+                                    <td  class="text-center">{{ organisation.numEntreprise }}</td>
+                                    <td  class="text-center">{{ organisation.limiteRequete }}</td>
+                                    <td  class="text-center">{{ organisation.typeBouton }}</td>
+                                    <td class="text-center">{{ organisation.nombreUtilisateur  }}</td>
+                                   <td>
+                                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                            <div class="btn-group" role="group">
+                                                <button id="btnGroupDrop1" type="button"
+                                                        class="btn btn-primary btn-sm dropdown-toggle"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"> Action
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                                                    <li style="text-align: left;"><a   href="{{ path('organisation_show', {'id': organisation.id}) }}" class="dropdown-item"><i
+                                                                    class="icon-copy fa fa-user-circle" aria-hidden="true"></i>
+                                                            Consulter l'organisation</a></li>
+                                                    <li style="text-align: left;"><a href="{{ path('organisation_edit', {'id':organisation.id}) }}" class="dropdown-item"><i
+                                                                    class="icon-copy fa fa-user-circle" aria-hidden="true"></i>
+                                                            Modifier l'organisation</a></li>
+
+                                                    <li>
+                                                        {{ include('organisation/_delete_form.html.twig') }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                           {# <th>N°</th>#}
+                            <th>Raison social</th>
+                            <th>Numéro entreprise</th>
+                            <th>Limite requete</th>
+                            <th>Type_bouton</th>
+                            <th>Nombre utilisateur</th>
+                            <th>actions</th>
+
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

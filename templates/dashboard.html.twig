@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block  pageTitle %}
+    Hey, <span>{{ app.user.nom ~" "~app.user.prenom }} !</span>
+{% endblock %}
+
+
+{% block  pageBio %}
+    <p class="header-subtitle">
+        {{ app.user.organisation.biographie }} <br>
+    </p>
+{% endblock %}

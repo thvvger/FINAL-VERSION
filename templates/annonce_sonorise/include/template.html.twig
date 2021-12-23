@@ -1,0 +1,99 @@
+<table  class="table table-responsive datatables-basic table-striped" style="width:100%">
+    <thead>
+    <tr>
+        <th class="d-none">id</th>
+        <th>Réf annonce.</th>
+        <th>Titre</th>
+        <th>Upload_Par</th>
+        <th>Req.</th>
+        <th>Créa.Date</th>
+        <th>Exp.Date</th>
+        <th>Status</th>
+        <th>Org.</th>
+        <th></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% if annonces|length <1 %}
+        <tr>
+            <td colspan="10">
+                Aucune données
+            </td>
+        </tr>
+    {% else %}
+        {% for annonce  in annonces %}
+            <tr>
+                <td  class="d-none">{{ annonce.id }}</td>
+                <td style="font-weight: bolder;">{{ annonce.reference }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.user.nom ~" "~annonce.user.prenom }}</td>
+
+                <td>45</td>
+                <td style="font-weight: bolder;">{{ annonce.createdAt|date('d/m/Y') }}</td>
+                <td style="font-weight: bolder;">{{ annonce.dateExpiration|date('d/m/Y') }}</td>
+                <td>
+
+                    {% if annonce.status  == 'pending' %}
+
+                        <button class="btn btn-primary btn-warning btn-sm">A traiter</button>
+                    {% elseif annonce.status =='sonorise' %}
+                        <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                    {% else %}
+                        <button class="btn">Expirée/Archivéé</button>
+                    {% endif %}
+                </td>
+                <td style="font-weight: bolder;">{{ annonce.organisation.raisonSocial }}</td>
+
+
+                <td>
+                    <div class="btn-group" role="group"
+                         aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button"
+                                    class="btn btn-primary btn-sm dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Action
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                {% if annonce.estSonorise   == false%}
+                                    <li style="text-align: left;"><a
+                                                href="{{ path('annonce_sonorise_redirect', {'id': annonce.id }) }}"
+                                                class="dropdown-item"><i
+                                                    class="icon-copy fa fa-user-check"
+                                                    aria-hidden="true"></i>
+                                            Sonoriser l'annonce</a></li>
+                                {% endif %}
+
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check"
+                                                aria-hidden="true"></i>
+                                        Archiver l'annonce</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li style="text-align: left;"><a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-circle"
+                                                aria-hidden="true"></i>
+                                        Consulter l'annonce</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>Réf.</th>
+        <th>Titre</th>
+        <th>Upload_Par</th>
+        <th>Lecteur</th>
+        <th>Créa.Date</th>
+        <th>Exp.Date</th>
+        <th>Status</th>
+        <th>Org.</th>
+        <th></th>
+
+    </tr>
+    </tfoot>
+</table>

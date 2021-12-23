@@ -1,0 +1,42 @@
+{% extends 'site/pages/politique_confidentialite_template.html.twig' %}
+
+{% block pageBreadCrumb %} Vie privée-protection des données {% endblock %}
+
+{% block contentPage %}
+    <h2>
+        VIE PRIVEE-PROTECTION DES DONNÉES
+    </h2>
+
+    <div>
+
+        <p><strong>Traitement de vos données renseignés via notre site
+                internet.</strong><br/><br/>
+            Vos coordonnées recueillies dans notre formulaire sont enregistrées dans un
+            fichier informatisé par notre société Sarano Immobilier & Travaux Publics
+            (SITP). Elles sont indispensables pour vous envoyer des requêtes et des
+            informations.</br></br> Conformément à ses engagements, SITP n’échange, ne
+            loue ou ne vend aucune de vos coordonnées à d’autres
+            organisations.</br></br> Conformément à la loi « informatique et libertés »
+            et à la réglementation, vous pouvez vous opposer à l’utilisation de vos
+            données à caractère personnel. Vous bénéficiez également d'un droit d'accès
+            à vos données en nous contactant par mail (contact@sarano-itp.com), Service
+            Relations client SITP, sise au 11 Avenue de la libération Aïdjedo-Cotonou-
+            Bénin, ou par téléphone au (+229).91.11.09.09</br></br> Pour en savoir plus
+            sur le traitement de vos données et sur vos droits, Contactez-nous. </p>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menuViePrivee").addClass('current')
+    </script>
+
+{% endblock %}
+

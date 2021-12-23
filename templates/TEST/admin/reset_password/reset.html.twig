@@ -1,0 +1,137 @@
+{% block body %}
+
+{% endblock %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/main.css') }}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"/>
+    <title>Réinitialisation - SITIP</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    -->
+</head>
+<body>
+<section class="material-half-bg">
+    <div class="cover"></div>
+</section>
+<section class="login-content">
+    <div class="logo">
+        <h1>SITIP</h1>
+    </div>
+    <div class="login-box">
+        {{ form_start(resetForm, {'attr': {'class': 'login-form'}}) }}
+        {#<form class="login-form" method="post">#}
+
+        <div class="row">
+            <div class="col-md-12">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="bs-component">
+                            <div class="alert alert-dismissible alert-{{ label }}">
+                                <button class="close" type="button" data-dismiss="alert">×</button>
+                                <h4> {{ message }}!</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>REINITIALISATION</h3>
+        <div class="form-group">
+            <label class="control-label">Nouveau mot de passe </label>
+            {{ form_widget(resetForm.plainPassword.first) }}
+            <div class="form-error">
+                {{ form_errors(resetForm.plainPassword.first) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Confirmez</label>
+            {{ form_widget(resetForm.plainPassword.second) }}
+            <div class="form-error">
+                {{ form_errors(resetForm.plainPassword.second) }}
+            </div>
+        </div>
+
+
+        <div class="form-group btn-container">
+            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Validez</button>
+        </div>
+        {{ form_end(resetForm) }}
+        {#</form>#}
+
+    </div>
+</section>
+</body>
+<script src="{{ asset('admin/js/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('admin/js/plugins/pace.min.js') }}"></script>
+<script src="{{ asset('admin/js/plugins/bootstrap-notify.min.js') }}"></script>
+<script src="{{ asset('admin/js/main.js') }}"></script>
+
+{#{% if error %}#}
+
+{#<script>#}
+{#$.notify({#}
+{#// options#}
+{#icon: 'glyphicon glyphicon-warning-sign',#}
+{#title: "Erreur d'authentification: ",#}
+{#message: '{{ error }}',#}
+{#},{#}
+{#// settings#}
+{#element: 'body',#}
+{#position: null,#}
+{#type: "danger",#}
+{#allow_dismiss: true,#}
+{#newest_on_top: false,#}
+{#showProgressbar: false,#}
+{#placement: {#}
+{#from: "top",#}
+{#align: "center"#}
+{#},#}
+{#offset: 20,#}
+{#spacing: 10,#}
+{#z_index: 1031,#}
+{#delay: 5000,#}
+{#timer: 1000,#}
+{#url_target: '_blank',#}
+{#mouse_over: null,#}
+{#animate: {#}
+{#enter: 'animated fadeInDown',#}
+{#exit: 'animated fadeOutUp'#}
+{#},#}
+{#onShow: null,#}
+{#onShown: null,#}
+{#onClose: null,#}
+{#onClosed: null,#}
+{#icon_type: 'class',#}
+{#template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +#}
+{#'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +#}
+{#'<span data-notify="icon"></span> ' +#}
+{#'<span data-notify="title">{1}</span> ' +#}
+{#'<span data-notify="message">{2}</span>' +#}
+{#'<div class="progress" data-notify="progressbar">' +#}
+{#'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +#}
+{#'</div>' +#}
+{#'<a href="{3}" target="{4}" data-notify="url"></a>' +#}
+{#'</div>'#}
+{#});#}
+{#</script>#}
+{#{% endif %}#}
+
+
+</html>

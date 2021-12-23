@@ -1,0 +1,28 @@
+{% extends "email/baseEmail.html.twig" %}
+
+{% block title %}
+  <h5 style="margin-top: 3%;padding-right: 35px;padding-left:35px;"><i class="fa fa-building" aria-hidden="true"></i>
+      {{ user.organisation }} / <i class="fa fa-user-circle" aria-hidden="true"></i>
+      {{ user.nom ~ " "~  user.prenom }} / <i class="fa fa-headphones"></i> Nouvelle sonorisation /</h5>
+{% endblock %}
+
+{% block content %}
+
+
+    <h2>Hey {{ user.username }}, 👋</h2>
+
+
+    <p> Vous avez sonorisé l'annonce <b>{{ annonceSonorise.annonce.titre }}</b> via votre plateforme de sonorisation
+        intuitive pour PME et Grande entreprise.</p>
+    <p>
+    <h3 style="text-align:center;"><b> Nouvelle sonorisation!</b></h3>
+
+    <p style="text-align:center;"> {{ annonceSonorise.annonce.titre }} | {{ annonceSonorise.annonce.reference }}
+        | {{ annonceSonorise.annonce.organisation }}| {{ annonceSonorise.annonce.user.fullname }}</p>
+    <p style="text-align:center;">
+        <a href="{{ path('annonce_texte') }}" class="button"><i class="fa fa-headphones"></i>
+            Accéder aux sonorisations</a>
+    </p>
+
+
+{% endblock %}

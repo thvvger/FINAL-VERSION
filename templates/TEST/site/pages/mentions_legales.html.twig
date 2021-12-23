@@ -1,0 +1,54 @@
+{% extends 'site/pages/politique_confidentialite_template.html.twig' %}
+
+{% block pageBreadCrumb %} Mentions Légales {% endblock %}
+
+{% block contentPage %}
+    <h2>
+        MENTIONS LÉGALES
+    </h2>
+
+    <div>
+
+        <p><strong>EDITEUR :</strong><br/><br/>
+            Ce site est édité par la société SITP. S.A.S</br>
+            Sarano Immobilier & Travaux Publics S.A.S</br>
+            11 Avenue de la libération - Aïdjedo-Cotonou</br>
+            04 BP 2775 Jéricho, Cotonou Bénin </br>
+            Tél : (+229) 91 11 09 09 </br>
+            E-mail : contact@sarano-itp.com</br>
+
+            </p>
+        <p><strong>Réalisation et hébergement :</strong><br/><br/>
+            Réalisation du site : <a target="_blank" href="http://www.brightech.africa/">BRIGHTECH</a> ; </br>
+            Hébergement du site : Société LWS (Ligne Web Services) au capital de 1 000
+            000 Euros - RCS Paris B 450 453 881 . </p>
+        <p><strong>Droits de propriété intellectuelle :</strong><br/><br/>
+            SITP.S.A.S avise les utilisateurs du site web mentionné que de nombreux
+            éléments de ce site Internet :
+            Sont protégés par la législation sur le droit d’auteur : ce peut être
+            notamment des photographies, des articles, des dessins, des séquences
+            animées, des enregistrements au format audio ou vidéo numériques, etc. ;
+            </br></br>
+            À ce titre, toute reproduction, représentation, utilisation, adaptation,
+            modification, incorporation, traduction, commercialisation, partielles ou
+            intégrales par quelque procédé et sur quelque support que ce soit (papier,
+            numérique, …) pour toute diffusion dans tout l’univers doivent faire l’objet
+            d’une autorisation écrite préalable de la part de la Direction Générale de
+            SITP.S.A.S </p>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menuMentionsLegales").addClass('current')
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrganisationSecteurActivite index{% endblock %}
+
+{% block pageTitle %}Liste des secteurs d'activité{% endblock %}
+{% block body %} 
+
+
+    <div class="col-md-12">
+        <a href="{{ path('organisation_secteur_activite_new') }}" class="btn btn-success">Ajouter</a>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Secteur d'activité</h5>
+                <h6 class="card-subtitle text-muted">Retrouvez ici tous les secteurs d'activités </h6>
+
+            </div>
+            <div class="card-body">
+
+                <table  class="table-striped datatables-basic table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Designation</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for organisation_secteur_activite in organisation_secteur_activites %}
+                        <tr>
+                            <td>{{ organisation_secteur_activite.id }}</td>
+                            <td>{{ organisation_secteur_activite.designation }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="{{ path('organisation_secteur_activite_edit', {'id': organisation_secteur_activite.id}) }}">Modifier</a>
+                                {{ include('organisation_secteur_activite/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

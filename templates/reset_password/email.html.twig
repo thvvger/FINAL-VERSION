@@ -1,0 +1,36 @@
+{% extends "email/baseEmail.html.twig" %}
+{% block title %}
+    <h5 style="margin-top: 3%;padding-right: 35px;padding-left:35px;"><i class="fa fa-building" aria-hidden="true"></i>
+        {{ user.organisation }} / <i class="fa fa-user-circle" aria-hidden="true"></i>   {{ user.nom ~ " "~ user.prenom }} </h5>
+
+{% endblock %}
+{% block content %}
+        <h2>Hey {{ user.prenom }}, 👋</h2>
+
+        <p> Merci de cliquer sur le <b> lien de </b> pour ré-initialier votre mot de passe.</p>
+
+        <table>
+            <tr>
+
+                <td align="center">
+
+                    <p>
+                        <a href="{{ url('app_reset_password', {token: resetToken.token}) }}" class="button"><i class="fa fa-external-link" aria-hidden="true"></i>
+
+                            Cliquez ici </a>
+                    </p>
+                    <p>
+                        Ce lien de récupération est valable pendant <b>{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</b>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <p style="text-align:center;"><em style="font-weight:thiner; font-size:12px;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                IMPORTANT: Ce mail est réservé uniquement au destinataire Langelier Renaud</em></p>
+
+
+
+{% endblock %}

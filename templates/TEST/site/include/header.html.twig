@@ -1,0 +1,213 @@
+<header id="page-header" class="clearfix">
+
+    <div class="clearfix w1200 marge-auto relative">
+
+        <div class="autres-site">
+            <p>Découvrez l'ensemble de nos sites :
+                <a href="https://sarano-itp.com" target="_blank">Bénin</a> /
+                <a href="#" target="_blank">Togo</a> /
+                <a href="#" target="_blank">Niger</a> /
+
+            </p>
+        </div>
+
+        <ul class="echap-links">
+            <li class="clearfix">
+                <a href="#" target="_blank" class="link proprietaire btn"><span
+                            class="ico header-ico-proprietaire"></span>Espace client</a>
+            </li>
+
+            <li class="clearfix">
+                <a href="#" class="link btn"><span class="ico header-ico-agence"></span>Nos Bureaux en Afrique</a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div id="menu-to-stick">
+        <div class="clearfix w1200 marge-auto relative">
+
+            <div id="mobile-contact-infos" class="only-mobile">
+                <a id="mobile-contact-menu" class="only-mobile"
+                   onclick="$('#mobile-contact-infos').toggleClass('opened'); $('#menu-background').toggle();">
+                    <img src="sites/all/themes/lamotheme/css/images/header/contact.png" alt="Contact"/>
+                </a>
+
+                <div class="">
+                    <ul>
+                        <li class="">
+                            <div class="views-field views-field-field-telephone">
+                                <div class="field-content"><a href="tel:02 99 67 71 80">Contact du Bénin<span>+229 91 11 09 09</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="">
+
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <a target="_blank" href="https://www.facebook.com/GroupeLamotte" class="facebook"></a>
+                    <a target="_blank" href="https://twitter.com/groupelamotte" class="twitter"></a>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <a href="contact.html"><span>Contactez-nous</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span>Nos agences<br/>dans l'ouest</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <a href="{{ path('home') }}" title="Accueil" rel="home" id="logo">
+                <img src="{{ asset('template/sites/all/themes/lamotheme/logo.png') }}"
+                     alt="Sarano Immobilier & Travaux public"/>
+            </a>
+
+            <ul class="contact-infos">
+                <li class="contact">
+                    <a href="{{ path('publier_offre') }}" class="link btn">Publier une offre</a>
+                </li>
+                <li class="tel">
+                    <a class="link btn" onclick="$(this).toggleClass('opened');">Appelez-nous</a>
+                    <div class="">
+                        <ul>
+                            <li class="">
+                                <div class="views-field views-field-field-telephone">
+                                    <div class="field-content"><a href="tel:02 99 67 71 80">Contact du Bénin<span>+229 91 11 09 09</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="">
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div id="menu-wrapper">
+                <a id="mobile-menu" class="only-mobile"
+                   onclick="$('#menu-wrapper').toggleClass('opened'); $('#menu-background').toggle();">
+                    <img src="sites/all/themes/lamotheme/css/images/header/menu.png" alt="Menu"/>
+                </a>
+
+                <div class="only-mobile">
+                    <ul class="top-links">
+                        <!--
+<li>
+  <a href="http://www.google.com/" target="_blank" class="link proprietaire btn"><span class="ico header-ico-proprietaire"></span>Espace propriétaire</a>
+</li> -->
+                        <li>
+                            <a href="#" target="_blank" class="link proprietaire btn"><span
+                                        class="ico header-ico-proprietaire"></span>Espace client</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <nav id="navigation" class="clearfix">
+
+
+                    <ul class="clearfix">
+                        <li>
+                            <a class="link imgBt home" id="home" href="{{ path('home') }}"><span>Accueil</span></a>
+
+
+                        </li>
+                        <li>
+                            <a class="link" href="{{ path('louer') }}" id="menuLouer">Louer</a>
+
+
+                        </li>
+                        <li>
+                            <a class="link" href="{{ path('acheter') }}" id="menuAcheter">Acheter</a>
+
+
+                        </li>
+                        <li>
+                            <a class="link" href="{{ path('page_slug', {'slug':'faire_gerer'}) }}" id="menu_faire_gerer">Faire gérer</a>
+
+
+                        </li>
+                        <li>
+                            <a class="link" href="{{ path('page_slug', {'slug':'vendre'}) }}" id="menu_vendre">Vendre</a>
+
+
+                        </li>
+                        <li>
+                            <a class="link" href="{{ path('page_slug', {'slug':'construire'}) }}" id="menu_construire">Construire</a>
+
+
+                        </li>
+                        <li>
+                            <div class="relative">
+                                <a class="link has-sub-menu" href="#">Qui sommes nous ?</a>
+                                <a href="#"
+                                   class="imgBt sub-menu-link"><span>Menu</span></a>
+                            </div>
+
+                            <ul class="sub-menu">
+
+
+                                <li>
+                                    <p class="title">A propos de SITP</p>
+                                    <ul class="list">
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'vision_mission'}) }}" id="menu_vision_mission" class="link">Vision &
+                                                Mission</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'ca'}) }}" id="menu_ca" class="link">Conseil
+                                                d'administration</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'ci'}) }}" id="menu_ci" class="link">Conseil
+                                                d'investissement</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'mpca'}) }}" id="menu_mpca" title="" class="link">Mot du
+                                                PCA</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'implantation'}) }}" id="menu_implantation" title="" class="link">Nos
+                                                implantations</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <p class="title">Nos Prestations</p>
+                                    <ul class="list">
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'gestion_immo'}) }}" id="menu_gestion_immo" title=""
+                                                                class="link">Gestion immobilière</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'etude'}) }}" id="menu_etude" title="" class="link">Etude &
+                                                Contrôle d'ouvrage</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'btp'}) }}" id="menu_btp" title="" class="link">Bâtiment &
+                                                Travaux publics</a></li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'forage'}) }}" id="menu_forage" title="" class="link">Forage</a>
+                                        </li>
+                                        <li class="rub-bord"><a href="{{ path('page_slug', {'slug':'autre_service'}) }}" id="menu_autre_service" title="" class="link">Autres
+                                                services proposé</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <p class="title">Besoin de plus d'infos ?</p>
+                                    <a class="link nous-contacter" href="#">N'hésitez pas à nous contacter !</a>
+                                    <a class="link nous-contacter" href="#">Ou à télécharger la brochure ! </a>
+                                </li>
+                            </ul>
+
+
+                        </li>
+
+                        <li class="fright_important clearfix">
+                            <form accept-charset="UTF-8" id="search-form" method="get" action="#">
+                                <div class="clearfix form-field">
+                                    <input type="text" value="" id="search-field" name="t"
+                                           placeholder="Rechercher des biens,...">
+                                </div>
+                                <input type="submit" class="submit" value="Ok">
+                            </form>
+                        </li>
+                    </ul>
+
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

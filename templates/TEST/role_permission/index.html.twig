@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RolePermission index{% endblock %}
+
+{% block body %}
+    <h1>RolePermission index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Deleted</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role_permission in role_permissions %}
+            <tr>
+                <td>{{ role_permission.id }}</td>
+                <td>{{ role_permission.deleted ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('role_permission_show', {'id': role_permission.id}) }}">show</a>
+                    <a href="{{ path('role_permission_edit', {'id': role_permission.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('role_permission_new') }}">Create new</a>
+{% endblock %}

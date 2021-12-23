@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}Liste des annonces texte{% endblock %}
+ {% block  body %}
+
+     <div class="row">
+
+         <div class="col-12">
+             <div class="card">
+                 <div class="card-header">
+                     <h5 class="card-title">{{ titre}}</h5>
+                     <h6 class="card-subtitle text-muted">Retrouvez ici toutes les {{ libelle }} de votre l'organisation  </h6>
+{#                     <h6 class="card-subtitle text-muted" style="margin-top: .5rem;">#}
+{#                         <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>#}
+{#                         <button class="btn btn-primary btn-warning btn-sm">A traiter</button>#}
+{#                         <button class="btn btn-primary btn-danger btn-sm">Expirée / Archivée</button>#}
+{#                     </h6>#}
+                 </div>
+                 <div class="card-body">
+                     {% include 'annonce/include/template.html.twig'  with  {annonces : annonces} %}
+                 </div>
+             </div>
+         </div>
+
+
+     </div>
+ {% endblock %}

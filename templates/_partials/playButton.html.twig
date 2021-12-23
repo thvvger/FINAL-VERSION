@@ -1,0 +1,20 @@
+{#{% if   showTitle =="true" %}#}
+    {#<h5 class="font-16">Agriculeur Maraicher H/F</h5>#}
+{#{% endif %}#}
+
+{#{% if showTitle is not defined %}#}
+
+    {#<h5 class="font-16">Agriculeur Maraicher H/F</h5>#}
+{#{% endif %}#}
+<button id="play-sono-{{ annonceSonorise.id }}" value="PLAY" onclick="play('{{ annonceSonorise.id }}')
+        " type="button" class="btn btn-primary btn-lg" style="width: 100%;"><i
+            class="icon-copy fa fa-play" aria-hidden="true"></i>
+    Écouter
+</button>
+<button value="PLAY" id="pause-sono-{{ annonceSonorise.id }}" onclick="pauseSono('{{ annonceSonorise.id }}')
+        " type="button" class="  btn btn-primary btn-lg" style="width: 100%; display: none;"><i
+            class="icon-copy fa fa-pause " aria-hidden="true"></i>
+    Arretez
+</button>
+<audio class="sono-audio" id="audio-{{ annonceSonorise.id }}"
+       src="{{ annonceSonorise.urlSono }}"></audio>

@@ -1,0 +1,52 @@
+{#{% set  annoncesSonorises=  annonces %}#}
+{#{{ dump(annonceRejetes) }}#}
+<table  class="table  table-responsive datatables-basic table-striped" style="width:100%">
+
+    <thead>
+    <tr>
+        <th class="d-none">id</th>
+        <th> </th>
+        <th>Titre</th>
+        <th>Upload  </th>
+        <th>Ref.</th>
+        <th>Créa.Date</th>
+        <th>Org.</th>
+{#        <th></th>#}
+
+    </tr>
+    </thead>
+    <tbody>
+    {% if annonceRejetes|length <1 %}
+        <tr>
+            <td colspan="10">
+                Aucune données
+            </td>
+        </tr>
+    {% else %}
+        {% for annonce  in annonceRejetes %}
+            <tr>
+                <td  class="d-none">{{ annonce.id }}</td>
+                <td  class="">
+                    <i class="align-middle me-2 fas fa-fw fa-headphones"></i>
+                </td>
+                {#<td  class=" "><i class="fa-file-alt"></i></td>#}
+
+                <td style="font-weight: bolder;">
+                    <a class="text-primary" style="color: #3e4676 !important;" href="{{ path('annonce_show', {'id': annonce.id}) }}">
+                        {{ annonce.titre }}</a>
+                </td>
+                <td>{{ annonce.user.nom ~" "~annonce.user.prenom }}</td>
+
+                <td >{{ annonce.reference }}</td>
+                <td style="font-weight: bolder;">{{ annonce.createdAt|date('d/m/Y') }}</td>
+                {% set annonceStat   = get_annone_stats(annonce) %}
+  
+
+                <td style="font-weight: bolder;">{{ annonce.organisation.raisonSocial }}</td>
+
+            </tr>
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+</table>

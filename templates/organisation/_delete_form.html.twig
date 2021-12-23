@@ -1,0 +1,5 @@
+<form method="post" class="text-center" action="{{ path('organisation_delete', {'id': organisation.id}) }}" onsubmit="return confirm('Voulez vous vraiment éffectuer cette opération?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ organisation.id) }}">
+    <button class="btn  " style="color: #3e4676 !important;"><i class="fa fa-trash"></i>Désactiver l'oganisation</button>
+</form>

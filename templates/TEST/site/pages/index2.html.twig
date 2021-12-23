@@ -1,0 +1,362 @@
+{% extends "site/base.html.twig" %}
+
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+    <div class="region region-content have-cadres">
+        <section id="home-slide" class="clearfix w820 clearfix">
+
+
+            <div class="content">
+                <ul class="slides clearfix">
+                    <li class="slide clearfix">
+                        <a href="#"
+                           data-title="Espace client"
+                           data-image="" class="link">
+                            <div class="illus">
+                                <a href="#"><img
+                                            src="sites/default/files/styles/slideshow/public/assets/images/espace-client-lamotte-gestion-transaction3acc.png?itok=hEfXFpG8"
+                                            width="820" height="450"
+                                            alt="Lamotte Gestion Transaction lance &quot;Mon espace client&quot;"/></a>
+                            </div>
+                            <header class="heading">
+                                <div class="wrapper-heading">
+                                    <h2 class="title">Investir en Afrique</h2>
+                                </div>
+                                <div class="wrapper-see-offer">
+                                    <span class="text">Voir l'offre</span>
+                                </div>
+                            </header>
+                            <div class="content">
+                            </div>
+                            <footer class="footer">
+                            </footer>
+                        </a>
+                    </li>
+                    <li class="slide clearfix">
+                        <a href="#"
+                           data-title="Espace client"
+                           data-image="" class="link">
+                            <div class="illus">
+                                <a href="#"><img
+                                            src="sites/default/files/styles/slideshow/public/assets/images/banner sitp2.png?itok=hEfXFpG8"
+                                            width="820" height="450"
+                                            alt="SITP Gestion Transaction lance &quot;Mon espace client&quot;"/></a>
+                            </div>
+                            <header class="heading">
+
+                            </header>
+                            <div class="content">
+                            </div>
+                            <footer class="footer">
+                            </footer>
+                        </a>
+                    </li>
+                    <li class="slide clearfix">
+                        <a href="#"
+                           data-title="Espace client"
+                           data-image="" class="link">
+                            <div class="illus">
+                                <a href="#"><img
+                                            src="sites/default/files/styles/slideshow/public/assets/images/banner sitp3.png?itok=hEfXFpG8"
+                                            width="820" height="450"
+                                            alt="SITP Gestion Transaction lance &quot;Mon espace client&quot;"/></a>
+                            </div>
+                            <header class="heading">
+
+                            </header>
+                            <div class="content">
+                            </div>
+                            <footer class="footer">
+                            </footer>
+                        </a>
+                    </li>
+                </ul>
+                <div class="pager"></div>
+            </div>
+        </section>
+        <!-- /.section, /#slider fin -->
+
+        <section id="search-bien" class="clearfix w360 clearfix">
+            <ul class="tabs clearfix">
+                <li><a href="#louer-form">Louer</a></li>
+                <li><a href="#acheter-form">Acheter</a></li>
+            </ul>
+            <form action="#" method="get" id="louer-form" accept-charset="UTF-8">
+                <div>
+                    <div class="form-field form-type-select">
+                        <label for="edit-pays" class="label">Pays</label>
+                        <select id="edit-pays" name="pays" class="form-select">
+                            <option value="1">BENIN</option>
+
+                        </select>
+                    </div>
+                    <input type="hidden" name="cible" value="locataire"/>
+                    <div id="form-ville-louer">
+                        <div class="form-field form-type-select">
+                            <label for="edit-ville" class="label">Ville</label>
+                            <select id="edit-ville" name="ville" class="form-select">
+                                <option value="1">Cotonou</option>
+                                <option value="2">Abomey-Calavi</option>
+                                <option value="2">Porto-Novo</option>
+                                <option value="2">Ouidah</option>
+                                <option value="2">Allada</option>
+                                <option value="2">Bohicon</option>
+                                <option value="2">Abomey</option>
+                                <option value="2">Grand-Popo</option>
+                                <option value="2">Lokossa</option>
+                                <option value="2">Allada</option>
+                                <option value="2">Sèmè-Podji</option>
+                                <option value="2">Parakou</option>
+                                <option value="2">Tchaourou</option>
+                                <option value="2">Natitingou</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-field form-type-select">
+                        <label for="edit-type" class="label">Type de bien à louer</label>
+                        <select id="edit-type" name="type" class="form-select">
+                            <option value="2">Appartement non meublé</option>
+                            <option value="442">Appartement meublé</option>
+                            <option value="16">Villa/Maison</option>
+                            <option value="17">Parcelle</option>
+                            <option value="443">Boutique</option>
+                            <option value="18">Expace Bureau</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field form-field-rooms form-field">
+                        <div class="form-field form-type-select">
+                            <label for="edit-nombre-pieces" class="label">Nombre de pièces</label>
+                            <select id="edit-nombre-pieces" name="nombre_pieces" class="form-select">
+                                <option value="0">- Indifférent -</option>
+                                <option value="1 pièce">1 pièce</option>
+                                <option value="2 pièces">2 pièces</option>
+                                <option value="3 pièces">3 pièces</option>
+                                <option value="4 pièces">4 pièces</option>
+                                <option value="5 pièces">5 pièces</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-field form-type-select">
+                        <label for="edit-area" class="label">Surface minimum</label>
+                        <select id="edit-area" name="area" class="form-select">
+                            <option value="0">- Indifférent -</option>
+                            <option value="30">30 m²</option>
+                            <option value="40">40 m²</option>
+                            <option value="50">50 m²</option>
+                            <option value="60">60 m²</option>
+                            <option value="70">70 m²</option>
+                            <option value="80">80 m²</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field form-type-select">
+                        <label for="edit-rent" class="label">Loyer</label>
+                        <select id="edit-rent" name="rent" class="form-select">
+                            <option value="0">- Indifférent -</option>
+                            <option value="moins_25">Moins de 25.000 Fcfa</option>
+                            <option value="25_100">De 25.000 Fcfa à 100.000 Fcfa</option>
+                            <option value="100_300">De 100.000 Fcfa à 300.000 Fcfa</option>
+                            <option value="300_500">De 300.000 Fcfa à 500.000 Fcfa</option>
+                            <option value="500_1000">De 500.000 Fcfa à 1.000.000 Fcfa</option>
+                            <option value="1000_plus">Plus de 1.000.000 Fcfa</option>
+                        </select>
+                    </div>
+                    <div id="solr-results-louer" class="subs-field clearfix"><input type="submit" id="edit-submit"
+                                                                                    name="op"
+                                                                                    value="Voir les résultats"
+                                                                                    class="form-submit"/></div>
+                    <input type="hidden" name="action" value="louer"/>
+                    <input type="hidden" name="form_build_id"
+                           value="form-1-wE6qSMdCGx8vIFzQwUBdVC1SoWhT0waA1_ZA9_Ud0"/>
+                    <input type="hidden" name="form_id" value="lamotte_search_facet_form"/>
+                </div>
+            </form>
+            <form action="#" method="get" id="acheter-form" accept-charset="UTF-8">
+                <div>
+                    <div class="form-field form-type-select">
+                        <label for="edit-departement--2" class="label">Pays</label>
+                        <select id="edit-departement--2" name="departement" class="form-select">
+                            <option value="1">BENIN</option>
+
+                    </div>
+                    <input type="hidden" name="cible" value="acquéreur"/>
+                    <div id="form-ville-acheter">
+                        <div class="form-field form-type-select">
+                            <label for="edit-ville--2" class="label">Ville</label>
+                            <select id="edit-ville--2" name="ville" class="form-select">
+                                <option value="1">Cotonou</option>
+                                <option value="2">Abomey-Calavi</option>
+                                <option value="2">Porto-Novo</option>
+                                <option value="2">Ouidah</option>
+                                <option value="2">Allada</option>
+                                <option value="2">Bohicon</option>
+                                <option value="2">Abomey</option>
+                                <option value="2">Grand-Popo</option>
+                                <option value="2">Lokossa</option>
+                                <option value="2">Allada</option>
+                                <option value="2">Sèmè-Podji</option>
+                                <option value="2">Parakou</option>
+                                <option value="2">Tchaourou</option>
+                                <option value="2">Natitingou</option>
+                            </select></select>
+                        </div>
+                    </div>
+                    <div class="form-field form-type-select">
+                        <label for="edit-type--2" class="label">Type de bien à acheter</label>
+                        <select id="edit-type--2" name="type" class="form-select">
+                            <option value="0">- Indifférent -</option>
+                            <option value="2">Villa/Maison/Immeuble</option>
+                            <option value="442">Parcelle/Terrain</option>
+                            <option value="16">Logement Sociaux</option>
+                        </select>
+                    </div>
+
+                    <div id="solr-results-acheter" class="subs-field clearfix"><input type="submit"
+                                                                                      id="edit-submit--2" name="op"
+                                                                                      value="Voir les résultats"
+                                                                                      class="form-submit"/></div>
+                    <input type="hidden" name="action" value="acheter"/>
+                    <input type="hidden" name="form_build_id"
+                           value="form-EeBzyg1aBSikfGYsTZvoyfSG-w9u3kRN9HOBiKwYWVY"/>
+                    <input type="hidden" name="form_id" value="lamotte_search_facet_form"/>
+                </div>
+            </form>
+        </section>
+
+        <!-- /.section, /#form recherche fin -->
+
+        <section id="block-block-6" class="block block-block clearfix">
+
+
+            <div class="content">
+                <article id="rent-possession">
+                    <div class="cadre-blanc">
+                        <div class="rent-possession-image"><img alt="Un bien à louer"
+                                                                src="sites/default/files/assets/images/img_unbienalouer_0.jpg"
+                                                                style="width: 168px; height: 252px;"/></div>
+
+                        <div class="rent-possession-content">
+                            <h2 class="title-block"><span>Un bien</span><br/>
+                                à louer ?</h2>
+
+                            <p>Pensez aux services Gestion immobilière de SITP !<br/>
+                                Nos conseillers sont à votre écoute et vous proposent des services qui correspondent
+                                à vos besoins !<br/><br/><span class="rouge">[<a class="fleche-rouge-2" href="#">voir les services</a>]</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="deco-l"> </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- /.section, /#fin Blog de presentation 1 -->
+
+
+        <section id="home-news" class="clearfix w900 relative clearfix">
+            <div class="cadre-blanc clearfix relative">
+
+                <h2 class="title-block"><span>A propos de nous</span><br/></h2>
+                <br/>
+                <p>Sarano Immobilier & Travaux Publics (SITP) est une société de gestion immobilière, de réalisation
+                    de travaux et d’assistance aux maitrises d’ouvrage,
+                    qui met à la disposition de sa clientèle, sa créativité, son expertise, et sa bonne gestion dans
+                    les domaines de la gestion immobilière et des BTP.<br/><br/><span class="rouge">[<a
+                                class="fleche-rouge-2" href="#">En savoir-plus</a>]
+
+
+    <br/><br/>  <h3 class="title">
+	VOTRE PARTENAIRE POUR DES SOLUTIONS DANS L'IMMOBILIER & LES TRAVAUX PUBLICS.</h3>
+                        </a>
+
+            </div>
+        </section>
+        <!-- /.section, /#fin Blog de presentation 2 -->
+
+
+        <section id="epub" class="clearfix w280 relative block block-nodeblock clearfix">
+
+            <div class="cadre-blanc cadre-epub clearfix">
+                <div class="contextual-links-region">
+                    <a href="#"><img src="sites/default/files/assets/images/capbeaulieu.gif" width="250"
+                                     height="250" alt=""/></a></div>
+            </div>
+            <span class="deco-r"></span>
+        </section>
+
+        <!-- /.section, /#fin Blog de presentation 3  -->
+
+        <section id="home-services" class="clearfix w1200 relative clearfix">
+            <div class="cadre-blanc clearfix relative">
+                <a href="#" class="link bt-view-all">Tous nos services</a>
+                <h2 class="title-block">
+                    <span>Nos Prestations</span> &amp; <span>garanties</span>
+                </h2>
+                <div class="services">
+                    <article class="service clearfix contextual-links-region">
+                        <a href="#" class="link clearfix relative">
+
+                            <img class="illus"
+                                 src="sites/default/files/styles/bloc_95/public/assets/images/picto-gestion-locative-170x170_0_0f63a.png?itok=rRZ_WMJt"
+                                 width="95" height="95" alt=""/>
+                            <h3 class="title">Gestion Immobilière en toute tranquillité</h3>
+
+                            <p>Notre équipe vous propose un ensemble de services pour faciliter la mise en location
+                                de votre bien et sécuriser votre investissement locatif.</p>
+                        </a>
+                    </article>
+                    <article class="service clearfix contextual-links-region">
+                        <a href="#" class="link clearfix relative">
+
+                            <img class="illus"
+                                 src="sites/default/files/styles/bloc_95/public/assets/images/cube_pack_securite_160x1609b67.png?itok=4S7_OWmS"
+                                 width="95" height="95" alt=""/>
+                            <h3 class="title">Etude & Construction de Bâtiment </h3>
+
+                            <p>Un service complet pour la réalisation de vos travaux de construction,
+                                réhabilitation, restructuration et extension pour vos bâtiments industriels et
+                                tertiaires pour un investissement serein et sécurisé.</p>
+                        </a>
+                    </article>
+                    <article class="service clearfix contextual-links-region">
+                        <a href="#" class="link clearfix relative">
+
+                            <img class="illus"
+                                 src="sites/default/files/styles/bloc_95/public/assets/images/picto-accompagnement-financier-170x170_02093.png?itok=VBEytbKj"
+                                 width="95" height="95" alt=""/>
+                            <h3 class="title">Etude & Travaux public</h3>
+
+                            <p>SITP est votre partenaire dans le domaine des travaux de terrassement, d'égouttage et
+                                de voiries, le concassage et les grands oeuvres !</p>
+                        </a>
+                    </article>
+                </div>
+            </div>
+            <span class="deco-l"></span>
+        </section>
+        <!-- /.section, /#fin Blog de nos services -->
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $('body').addClass('html front not-logged-in page-accueil no-sidebar  page-home')
+        $("#home").addClass('current')
+    </script>
+
+    <script src="{{ asset('js/offre.js') }}"></script>
+{% endblock %}

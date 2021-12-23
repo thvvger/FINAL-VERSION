@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+{% block pageTitle %} {{ annonce.titre }} {% endblock %}
+{% block body %}
+    <div class="row">
+
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Informations de l'annonce</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="font-weight: 800;">
+                            <li class="breadcrumb-item">Date de publication: {{ annonce.createdAt|date('d/m/Y') }}</li>
+                            <li class="breadcrumb-item">Date
+                                d'expiration: {{ annonce.dateExpiration|date('d/m/Y') }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Référence: {{ annonce.reference }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Type de
+                                contrat: {{ annonce.typeContrat }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Rémuneration: {{ annonce.remuneration }}€
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page">Employeur: {{ annonce.organisation }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Niveau d'etude
+                                : {{ annonce.niveauEtude }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Lieu: {{ annonce.lieu }}</li>
+                            <li class="breadcrumb-item" aria-current="page">Status:
+
+                                {% if annonce.status  == 'pending' %}
+
+                                    <button class="btn btn-primary btn-warning btn-sm">En traitement</button>
+                                {% elseif annonce.status =='sonorise' %}
+                                    <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                                {% else %}
+                                    <button class="btn  btn-danger btn-sm">Expirée/Archivéé</button>
+                                {% endif %}
+                            </li>
+                            {% if annonce.estValider is not null %}
+                            <li class="breadcrumb-item" aria-current="page"> Etat de validation :
+                                    {% if annonce.estValider == true %}
+                                        <button class="btn btn-success   btn-sm">Valider</button>
+                                    {% else %}
+                                        <button class="btn btn-danger   btn-sm">Rejeter</button>
+                                    {% endif %}
+                            </li>
+                            <li class="breadcrumb-item" aria-current="page"> Validé par:
+                                    {{ annonce.validerPar.nom ~  ' '~annonce.validerPar.prenom}}
+                            </li>
+                            {% endif %}
+                        </ol>
+                    </nav>
+
+                    <hr>
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-primary btn-lg dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Gérer l'annonce
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check" aria-hidden="true"></i> Relancer
+                                        l'admin</a></li>
+         96470873                       <li style="text-align: left;"><a  href="{{ path('annonce_sonorise_redirect', {'id': annonce.id }) }}" class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check" aria-hidden="true"></i> Sonoriser
+                                        l'annonce</a></li>
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check" aria-hidden="true"></i> Archiver
+                                        l'annonce</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-circle" aria-hidden="true"></i> Consulter
+                                        l'annonce</a></li>
+                                <li style="text-align: left;"><a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="dropdown-item"><i
+                                                class="icon-copy fa fa-binoculars" aria-hidden="true"></i> Verifier
+                                        l'annonce</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if  annonce.estSonorise %}
+                        <div style="display: inline-block;" class=" ">
+                            {% include '_partials/playButton.html.twig' %}
+                        </div>
+                    {% endif %}
+
+                    <form style="display: inline-block;" action="{{ path('change_validation_status', {'id':annonce.id}) }}" method="post">
+                        {% if annonce.estValider is null %}
+                            <div class="btn-group">
+                                <button type="submit" name="typeSubmit" value="valider"   class="btn btn-success">Valider</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit"  name="typeSubmit" value="rejeter"  class="btn btn-danger">Rejeté</button>
+                            </div>
+                        {% endif %}
+                    </form>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Description du poste</h1>
+                    {{ annonce.description|raw }}
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Profil du candidat</h1>
+                    {{ annonce.profilRecherche }}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="header-title" style="color: #28304E;">Salaire</h1>
+                    {{ annonce.salaire }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

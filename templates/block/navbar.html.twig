@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand navbar-theme">
+    <a class="sidebar-toggle d-flex me-2">
+        <i class="hamburger align-self-center"></i>
+    </a>
+
+    <form class="d-none d-sm-inline-block">
+        <input class="form-control form-control-lite" type="text" placeholder="Search projects...">
+    </form>
+
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle position-relative" href="#" id="messagesDropdown"
+                   data-bs-toggle="dropdown">
+                    <i class="align-middle fas fa-envelope-open"></i>
+
+                    {% if  app.session.flashbag.peekAll|length > 0  %}
+                        <span class="indicator">{{ app.session.flashbag.peekAll|length }}</span>
+                    {% endif %}
+
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
+                    <div class="dropdown-menu-header">
+                        <div class="position-relative">
+                            {{ app.session.flashbag.peekAll|length }} Nouvelle(s) alerte(s)
+                        </div>
+                    </div>
+                    <div class="list-group">
+                     {#   {% if app.session.flashbag.peekAll|length > 0 %}
+                            {% for type, messages in app.session.flashbag.all %}
+                                {% for message in messages %}
+
+                                    <a href="#" class=" bg-{{ type }} list-group-item">
+                                        <div class="row g-0 align-items-center">
+
+                                            <div class="col-12 ps-2">
+                                                <div class="text-dark">
+                                                   {{ message }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}#}
+
+
+
+                    </div>
+                    <div class="dropdown-menu-footer">
+                        <a href="#" class="text-muted">Show all messages</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown ms-lg-2">
+                <a class="nav-link dropdown-toggle position-relative" href="#" id="alertsDropdown"
+                   data-bs-toggle="dropdown">
+                    <i class="align-middle fas fa-bell"></i>
+                    <span class="indicator"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
+                    <div class="dropdown-menu-header">
+                        4 dernières Notifications
+                    </div>
+                    {% set notifications =  get_notifications() %}
+                    <div class="list-group">
+
+                        {% for notification in notifications %}
+                            <a href="#" class="list-group-item">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-2">
+                                        <i class="ms-1 text-success fas fa-fw fa-bell-slash"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="text-dark">{{ notification.titre }}</div>
+                                        <div class="text-muted small mt-1">{{ notification.contenu }}</div>
+                                        <div class="text-muted small mt-1">{{ notification.createdAt|date('d/m/Y    ') }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+
+                    </div>
+                    <div class="dropdown-menu-footer">
+                        <a href="#" class="text-muted">Show all notifications</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown ms-lg-2">
+                <a class="nav-link dropdown-toggle position-relative" href="#" id="userDropdown"
+                   data-bs-toggle="dropdown">
+                    <i class="align-middle me-2 fas fa-fw fa-lock"></i>
+                </a>
+
+            </li>
+            <li class="nav-item dropdown ms-lg-2">
+                <a class="nav-link dropdown-toggle position-relative" href="#" id="userDropdown"
+                   data-bs-toggle="dropdown">
+                    <i class="align-middle fas fa-cog"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    {#<a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-user"></i> View Profile</a>#}
+                    {#<a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-comments"></i> Contacts</a>#}
+                    {#<a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-chart-pie"></i> Analytics</a>#}
+                    {#<a class="dropdown-item" href="#"><i class="align-middle me-1 fas fa-fw fa-cogs"></i> Settings</a>#}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}"><i
+                                class="align-middle me-1 fas fa-fw fa-arrow-alt-circle-right"></i> Deconnexion</a>
+                    <a class="dropdown-item" href="{{ path('change_password') }}"><i
+                                class="align-middle me-1 fas fa-fw fa-cog"></i> Mot de passe</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</nav>

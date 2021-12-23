@@ -1,0 +1,16 @@
+{{ form_start(form,{"attr" :{"class" : "row"}}) }}
+ <div class="col-md-5">
+     <label for="">Code</label>
+     {{ form_widget(form.codeRole) }}
+ </div>
+ <div class="col-md-5">
+     <label for="">Designation</label>
+     {{ form_widget(form.name) }}
+ </div>
+ <div class="col-md-2">
+     <label for=""> </label><br>
+     <button type="submit" class="btn btn-primary mb-2">Enregistrer</button>
+ </div>
+{{ form_end(form) }}
+
+

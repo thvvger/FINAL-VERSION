@@ -1,0 +1,106 @@
+<table  class="table  table-responsive datatables-basic table-striped" style="width:100%">
+    <thead>
+    <tr>
+        <th class="d-none">id</th>
+        <th> </th>
+        <th>Titre</th>
+        <th>Upload  </th>
+        <th>Ref.</th>
+        <th>Créa.Date</th>
+        <th>Exp.Date</th>
+        <th>Status</th>
+        <th>Valider?</th>
+        <th>Org.</th>
+        <th></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% if annonces|length <1 %}
+        <tr>
+            <td colspan="10">
+                Aucune données
+            </td>
+        </tr>
+    {% else %}
+        {% for annonce  in annonces %}
+            <tr>
+                <td  class="d-none">{{ annonce.id }}</td>
+                <td  class="">
+                    <i class="align-middle me-2 fas fa-fw fa-headphones"></i>
+                </td>
+                {#<td  class=" "><i class="fa-file-alt"></i></td>#}
+
+                <td style="font-weight: bolder;">
+                    <a class="text-primary" style="color: #3e4676 !important;" href="{{ path('annonce_show', {'id': annonce.id}) }}">
+                        {{ annonce.titre }}</a>
+                </td>
+                <td>{{ annonce.user.nom ~" "~annonce.user.prenom }}</td>
+
+                <td >{{ annonce.reference }}</td>
+                <td style="font-weight: bolder;">{{ annonce.createdAt|date('d/m/Y') }}</td>
+                <td style="font-weight: bolder;">{{ annonce.dateExpiration|date('d/m/Y') }}</td>
+                <td>
+
+                    {% if annonce.status  == 'pending' %}
+                        <button class="btn btn-primary btn-warning btn-sm">A&nbsp;traiter</button>
+                    {% elseif annonce.status =='sonorise' %}
+                        <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                    {% else %}
+                        <button class="btn">Expirée/Archivéé</button>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if annonce.estValider is not null %}
+
+                            {% if annonce.estValider == true %}
+                                <button class="btn btn-success   btn-sm">Validée</button>
+                            {% elseif  annonce.estValider ==false %}
+                                <button class="btn btn-danger   btn-sm">Rejetée</button>
+
+                            {% endif %}
+                    {% else %}
+                        <button style="color: orange!important;" class="btn btn-primary   btn-sm">A&nbsp;validée</button>
+                    {% endif %}
+                </td>
+                <td style="font-weight: bolder;">{{ annonce.organisation.raisonSocial }}</td>
+
+
+                <td>
+                    <div class="btn-group" role="group"
+                         aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button"
+                                    class="btn btn-primary btn-sm dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> Action
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                {% if annonce.estSonorise   == false%}
+                                    <li style="text-align: left;"><a
+                                                href="{{ path('annonce_sonorise_redirect', {'id': annonce.id }) }}"
+                                                class="dropdown-item"><i
+                                                    class="icon-copy fa fa-user-check"
+                                                    aria-hidden="true"></i>
+                                            Sonoriser l'annonce</a></li>
+                                {% endif %}
+
+                                <li style="text-align: left;"><a class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-check"
+                                                aria-hidden="true"></i>
+                                        Archiver l'annonce</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li style="text-align: left;"><a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="dropdown-item"><i
+                                                class="icon-copy fa fa-user-circle"
+                                                aria-hidden="true"></i>
+                                        Consulter l'annonce</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+
+    {% endif %}
+
+    </tbody>
+</table>

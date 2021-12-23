@@ -1,0 +1,30 @@
+{% extends "email/baseEmail.html.twig" %}
+
+{% block title %}
+    <h5 style="margin-top: 3%;padding-right: 35px;padding-left:35px;"><i class="fa fa-building" aria-hidden="true"></i>
+        WatchGuard / <i class="fa fa-headphones"></i> Nouvelle sonorisation /</h5>
+{% endblock %}
+
+{% block content %}
+
+
+    <h2>Hey {{ user.username }}, 👋</h2>
+
+
+    <p> Vous avez sonorisé l'annonce <b>{{ annonceSonorise.annonce.titre }}</b> via votre plateforme de sonorisation
+        intuitive pour PME et Grande entreprise.</p>
+    <p>
+    <h3 style="text-align:center;"><b> Nouvelle sonorisation!</b></h3>
+
+    <p style="text-align:center;"> {{ annonceSonorise.annonce.titre }} | {{ annonceSonorise.annonce.reference }}
+        | {{ annonceSonorise.annonce.organisation }}| {{ annonceSonorise.annonce.user.fullname }}</p>
+    <p style="text-align:center;">
+        <a href="{{ path('annonce_texte') }}" class="button"><i class="fa fa-headphones"></i>
+            Accéder aux sonorisations</a>
+    </p>
+
+    <p style="text-align:center;"><em style="font-weight:thiner; font-size:12px;"><i class="fa fa-exclamation-circle"
+                                                                                     aria-hidden="true"></i>
+            IMPORTANT: Ce mail est réservé aux administrateurs d'organisation uniquement</em></p>
+
+{% endblock %}

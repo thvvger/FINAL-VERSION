@@ -1,0 +1,44 @@
+
+<div class="row">
+    <form action="{{ path('role_permission_new') }}" method="post">
+        <div class="col-md-8">
+            <select name="permission" id="permission" class="form-control chosen" required>
+                {% for permission in permissions %}
+                    {% if permission.visible == true %}
+                        <option value="{{ permission.id }}">{{ permission.description }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            <input type="hidden" name="role" value="{{ roleId }}">
+        </div>
+        <div class="col-md-2">
+            <button class="form-control btn btn-success" type="submit">Ajouter</button>
+        </div>
+    </form>
+
+</div>
+
+
+<div class="row" style="margin-top: 20px;">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Permission</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for rolePermission in rolePermissions %}
+            <tr>
+                <td>{% if rolePermission.permission %} {{ rolePermission.permission.description }} {% endif %}</td>
+                <td>{% if rolePermission.permission %}
+                        <a href="{{ path('role_permission_delete', {'id':rolePermission.id}) }}" class="btn btn-danger btn-xs">Supprimer</a>
+                    {% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+

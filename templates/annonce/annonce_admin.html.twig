@@ -1,0 +1,202 @@
+{% extends "base.html.twig" %}
+{% block pageTitle %}Liste des annonces texte{% endblock %}
+ {% block  body %}
+     <div class="row">
+         <div class="col-12 col-lg-6">
+             <div class="w-100">
+                 <div class="row">
+                     <div class="col-sm-6">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h1 class="display-5 mt-1 mb-3" style="font-weight:800"><i
+                                             class="align-middle me-2 fas fa-fw fa-file-alt"></i></i>17</h1>
+                                 <div class="mb-0">
+                                     <div class="col mt-0">
+                                         <h5 class="card-title">Annonces textes uploadés</h5>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h1 class="display-5 mt-1 mb-3" style="font-weight:800"><i
+                                             class="align-middle me-2 fas fa-fw fa-thumbs-up"></i>Edwin Jimaja</h1>
+                                 <div class="mb-0">
+                                     <div class="col mt-0">
+                                         <h5 class="card-title">Top User</h5>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+
+         <div class="col-12 col-lg-6">
+             <div class="w-100">
+                 <div class="row">
+                     <div class="col-sm-6">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h1 class="display-5 mt-1 mb-3" style="font-weight:800"><i
+                                             class="align-middle me-2 fas fa-fw fa-bullhorn"></i>90%</h1>
+                                 <div class="mb-0">
+                                     <div class="col mt-0">
+                                         <h5 class="card-title">Ann Upload VS Ann Sonorisés</h5>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="card">
+                             <div class="card-body">
+                                 <h1 class="display-5 mt-1 mb-3" style="font-weight:800"><i
+                                             class="align-middle me-2 fas fa-fw fa-trophy"></i>Agriculture</h1>
+                                 <div class="mb-0">
+                                     <div class="col mt-0">
+                                         <h5 class="card-title">Secteur N°1</h5>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+     </div>
+     <div class="row">
+
+         <div class="col-12">
+             <div class="card">
+                 <div class="card-header">
+                     <h5 class="card-title">Annonces_ audios - [admin]</h5>
+                     <h6 class="card-subtitle text-muted">Retrouvez ici toutes les annonces audios de l'organisation
+                         connectée (Vue admin) </h6>
+                     <h6 class="card-subtitle text-muted" style="margin-top: .5rem;">
+                         <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                         <button class="btn btn-primary btn-warning btn-sm">En traitement</button>
+                         <button class="btn btn-primary btn-danger btn-sm">Expirée / Archivée</button>
+                     </h6>
+                 </div>
+                 <div class="card-body">
+                     <table  class="table datatables-basic table-striped" style="width:100%">
+                         <thead>
+                         <tr>
+                             <th>Réf.</th>
+                             <th>Titre</th>
+                             <th>Upload_Par</th>
+                             <th>Lecteur</th>
+                             <th>Créa.Date</th>
+                             <th>Exp.Date</th>
+                             <th>Status</th>
+                             <th>Org.</th>
+                             <th>Format</th>
+                             <th>Req.</th>
+                             <th></th>
+
+                         </tr>
+                         </thead>
+                         <tbody>
+                         {% if annonces|length <1 %}
+                             <tr>
+                                 <td colspan="10">
+                                     Aucune données
+                                 </td>
+                             </tr>
+                         {% else %}
+                             {% for annonce  in annonces %}
+                                 <tr>
+                                     <td style="font-weight: bolder;">{{ annonce.reference }}</td>
+                                     <td>{{ annonce.titre }}</td>
+                                     <td>{{ annonce.user.nom ~" "~annonce.user.prenom }}</td>
+                                     <td>
+                                         <button type="button" cla  ss="btn btn-primary btn-lg" style="width: 100%;"><i
+                                                     class="icon-copy fa fa-play" aria-hidden="true"></i> Play
+                                         </button>
+                                     </td>
+                                     <td style="font-weight: bolder;">{{ annonce.createdAt|date('d/m/Y') }}</td>
+                                     <td style="font-weight: bolder;">{{ annonce.dateExpiration|date('d/m/Y') }}</td>
+                                     <td>
+                                         {% if annonce.status =="pending" %}
+                                             <button class="btn btn-primary btn-warning btn-sm"> traitement</button>
+
+                                         {% elseif annonce.status =="sonorise" %}
+                                             <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                                         {% endif %}
+
+                                     </td>
+                                     <td style="font-weight: bolder;">{{ annonce.organisation.raisonSocial }}</td>
+
+
+                                     <td>Lecteur audio</td>
+                                     <td>45</td>
+                                     <td>
+                                         <div class="btn-group" role="group"
+                                              aria-label="Button group with nested dropdown">
+                                             <div class="btn-group" role="group">
+                                                 <button id="btnGroupDrop1" type="button"
+                                                         class="btn btn-primary btn-sm dropdown-toggle"
+                                                         data-bs-toggle="dropdown" aria-expanded="false"> Action
+                                                 </button>
+                                                 <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                                                     <li style="text-align: left;"><a
+                                                                 href="{{ path('annonce_sonorise_redirect', {'id': annonce.id}) }}"
+                                                                 class="dropdown-item"><i
+                                                                     class="icon-copy fa fa-user-check"
+                                                                     aria-hidden="true"></i>
+                                                             Sonoriser l'annonce</a></li>
+                                                     <li style="text-align: left;"><a class="dropdown-item"><i
+                                                                     class="icon-copy fa fa-user-check"
+                                                                     aria-hidden="true"></i>
+                                                             Archiver l'annonce</a></li>
+                                                     <div class="dropdown-divider"></div>
+                                                     <li style="text-align: left;"><a class="dropdown-item"><i
+                                                                     class="icon-copy fa fa-user-circle"
+                                                                     aria-hidden="true"></i>
+                                                             Consulter l'annonce</a></li>
+                                                 </ul>
+                                             </div>
+                                         </div>
+                                     </td>
+                                 </tr>
+                             {% endfor %}
+                         {% endif %}
+
+                         </tbody>
+                         <tfoot>
+                         <tr>
+                             <th>Réf.</th>
+                             <th>Titre</th>
+                             <th>Upload_Par</th>
+                             <th>Lecteur</th>
+                             <th>Créa.Date</th>
+                             <th>Exp.Date</th>
+                             <th>Status</th>
+                             <th>Org.</th>
+                             <th>Format</th>
+                             <th>Req.</th>
+                             <th></th>
+
+                         </tr>
+                         </tfoot>
+                     </table>
+                 </div>
+             </div>
+         </div>
+
+
+     </div>
+ {% endblock %}

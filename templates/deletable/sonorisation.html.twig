@@ -1,0 +1,138 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+
+            <div class="p-5 bg-white border-radius-4 box-shadow mb-30">
+
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+
+                            <h3 class="text-blue h3">Sonoriser une annonce</h3>
+                            <p class="mb-30">Merci de renseigner les champs</p>
+                        </div>
+
+                    </div>
+                    <form  method="post">
+
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <label><h5 style="font-weight: bold;">Ref. annonce</h5></label>
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" placeholder="Générez la référence unique du shadow" aria-label="Générez la référence unique du shadow" aria-describedby="button-addon4">
+                                    <div class="input-group-append" id="button-addon4">
+                                        <button class="btn btn-outline-primary" type="button"><b>Générez référence</b></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label><h5 style="font-weight: bold;">Organisation</h5></label>
+                                    <select class="form-control">
+                                        <option>Admin inherit</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12"><label><h5 style="font-weight: bold;">Url Hote</h5></label><br>
+                                <div class="input-group">
+
+                                    <input type="text " class="form-control" id="fname" name="fname"
+                                           placeholder="http://51.77.67.128/tb/1/e4/dj_arafat_gbobolor_clip_officiel_mp3_32559.mp3?play">
+                                       <div class="input-group-append" id="button-addon4">
+                                        <button class="btn btn-outline-primary" id="submit-type" type="button"><b>Générez l'iframe</b></button>
+                                    </div>
+
+                                  </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="fname">IFRAME :</label><br>
+                                <textarea class="col-md-12" id="iframe" name="Text1" cols="40" rows="5"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <audio id="audio" class="form-control" controls autoplay>
+                                    <source id="audioSource" src="">
+                                </audio>
+
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label><h5 style="font-weight: bold;">Type de bouton (API)</h5></label>
+                                    <select class="form-control">
+                                        <option>Lecteur audio</option>
+                                        <option>Modal avec lecteur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label><h5 style="font-weight: bold;">Titre de l'annonce</h5></label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label><h5 style="font-weight: bold;">Description du poste</h5></label>
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label><h5 style="font-weight: bold;">Profil recherché</h5></label>
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <button id="sa-params" type="submit" class="btn btn-primary btn-lg btn-block" style="margin: 0.5rem;">Valider</button>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <button type="button" class="btn btn-danger btn-lg btn-block" style="margin:0.5rem;">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="footer-wrap pd-20 mb-20 card-box">
+            <b>Projet </b>ISO-Sono
+        </div>
+    </div>
+{% endblock %}
+
+{% block  javascripts %}
+    {{ parent() }}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("#submit-type").on( 'click',function()
+                {
+                    var audio = document.getElementById('audio');
+
+                    var source = document.getElementById('audioSource');
+                    source.src =document.getElementById('fname').value/* "http://51.77.67.128/tb/1/e4/dj_arafat_gbobolor_clip_officiel_mp3_32559.mp3?play" */;
+                    document.getElementById('iframe').value = `<audio id="audio" controls autoplay\>\n\t<source id="audioSource" src="${document.getElementById('fname').value}">\n</audio>`
+                    audio.load(); //call this to just preload the audio without playing
+                    audio.play(); //call this to play the song right away
+                }
+            );
+        });
+
+    </script>
+{% endblock %}

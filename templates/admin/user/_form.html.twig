@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-md-4">
+        <label>Nom</label>
+        {{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
+    </div>
+
+    <div class="col-md-4">
+        <label>Prenom</label>
+        {{ form_widget(form.prenom, {'attr': {'class':'form-control'}}) }}
+    </div>
+
+</div>
+
+<div class="row" style="margin-top: 30px;">
+    <div class="col-md-4">
+        <label>Mot de passe</label>
+        {{ form_widget(form.plainPassword, {'attr': {'class':'form-control'}}) }}
+        <div>
+            {{ form_errors(form.plainPassword) }}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label>Confirmation</label>
+        {{ form_widget(form.plainPasswordConfirm, {'attr': {'class':'form-control'}}) }}
+        <div>
+            {{ form_errors(form.plainPasswordConfirm) }}
+        </div>
+    </div>
+    <div class="col-md-2">
+        <label>&nbsp;</label>
+        <button type="submit" class="btn btn-primary form-control">Modifier</button>
+
+    </div>
+</div>
+
+{#{{ form_row(form.agreeTerms) }}#}
+{{ form_end(form) }}

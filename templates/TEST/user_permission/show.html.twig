@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserPermission{% endblock %}
+
+{% block body %}
+    <h1>UserPermission</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_permission.id }}</td>
+            </tr>
+            <tr>
+                <th>Deleted</th>
+                <td>{{ user_permission.deleted ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_permission_index') }}">back to list</a>
+
+    <a href="{{ path('user_permission_edit', {'id': user_permission.id}) }}">edit</a>
+
+    {{ include('user_permission/_delete_form.html.twig') }}
+{% endblock %}

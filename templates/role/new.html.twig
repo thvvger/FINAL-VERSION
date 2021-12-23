@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Role{% endblock %}
+{% block pageTitle %}{# Créer  un role #}{% endblock %}
+{% block body %}
+    <div class="card">
+        <div class="card-body container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h1> Créer un rôle </h1>
+
+                    {{ include('role/_form.html.twig') }}<br>
+
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table datatables-basic table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for role in roles %}
+                            <tr>
+                                <td>{{ role.id }}</td>
+                                <td>{{ role.name }}</td>
+                                <td>
+                                    {{ include('role/_delete_form.html.twig') }}
+{#                                    {{ include('role/_delete_form.html.twig') }}#}
+                                     <a class="btn btn-danger" href="{{ path('role_permission', {'role_id': role.id}) }}">Modifier les permissions</a>
+                                    {# <a href="{{ path('role_edit', {'id': role.id}) }}">edit</a> #}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            {# <a href="{{ path('role_index') }}">back to list</a> #}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{#    <script>#}
+        var fr = '//cdn.datatables.net/plug-ins/1.10.20/i18n/French.json';
+        $('.exportable').DataTable({
+            responsive: true,
+            // dom: 'Bfrtip',
+            "oLanguage": {
+                "sUrl": fr
+            },
+            // buttons: [
+            //     'copy', 'csv', 'excel', 'pdf', 'print'
+            // ]
+        });
+{#    </script>#}
+
+{% endblock %}
+

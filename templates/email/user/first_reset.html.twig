@@ -1,0 +1,34 @@
+ {% extends "email/baseEmail.html.twig" %}
+
+{% block content %}
+    <h2>Hey, {{ user.fullname }} 👋</h2>
+
+    <p> Nous sommes plus que ravis de vous avoir dans notre équipe !
+        Nous espérons vous offrir une experience client étonnante. Vous profitez des à present du
+        meilleur de <b>Iso-Sono AI</b> notre platforme de sonoristion intuitive pour PME et Grande
+        entreprise.</p>
+    <p>
+    <h3 style="text-align:center;"><b> C'est parti, Maestro!</b>
+    </h3>
+
+
+    <table>
+        <tr>
+            <td align="center">
+                <p>
+                    <b>Identifiant:</b> {{ user.email }}
+                </p>
+                <p>
+                    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}" class="button"><i class="fa fa-lock"
+                                                                    aria-hidden="true"></i>
+                        Créer votre mot de passe</a>
+                </p>
+
+                <p>
+                  ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}
+                </p>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

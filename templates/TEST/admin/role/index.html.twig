@@ -1,0 +1,130 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block style %}
+    {{ parent() }}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block pagetitle %}
+    Role
+{% endblock %}
+
+{% block contenttitlefaicon %}
+    fa fa-dashboard
+{% endblock %}
+
+{% block contenttitle %}
+    Roles
+{% endblock %}
+
+{% block contentsubtitle %}
+    Liste des roles
+{% endblock %}
+
+
+{% block pagecontent %}
+    {# <h1>Create new Demeurre</h1>#}
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN VALIDATION STATES-->
+                        <div class="portlet light portlet-fit portlet-form bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-settings font-dark"></i>
+                                    <span class="caption-subject font-dark sbold uppercase"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <form method="post">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="role" id="role" required>
+                                            <input type="hidden" name="action" id="action" value="new">
+                                            <input type="hidden" name="roleToEdit" id="roleToEdit" value="0">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button id="submit" class="btn btn-success form-control"  type="submit">Ajouter</button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" style="display: none" id="cancelEdit" class="btn btn-default">Annuler</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="col-md-12" style="margin-top: 20px;">
+
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for role in roles %}
+                                            <tr>
+                                                <td>{{ role.name }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-success editRole"
+                                                            data-id="{{ role.id }}" data-role="{{ role.name }}">Modifier</button>
+                                                    <button type="button"  class="btn btn-default rolePermissions"
+                                                            data-toggle="modal" data-target="#modalRolePermission"
+                                                            data-id="{{ role.id }}"
+                                                    >Permissions</button>
+                                                    <a href="{{ path('role_delete', {'id':role.id}) }}" class="btn btn-danger">Supprimer</a>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="7">Aucun enregistrement</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{ include('admin/role/modal/_modalRolePermission.html.twig') }}
+
+
+                            </div>
+
+
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE BASE CONTENT -->
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+
+    {#<a href="{{ path('demeurre_index') }}">back to list</a>#}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function ()
+        {
+            $("#menuRole").addClass("active");
+            $("#treeMenuUser").addClass("active");
+
+        })
+    </script>
+
+    <script src="{{ asset('js/role.js') }}"></script>
+
+{% endblock %}

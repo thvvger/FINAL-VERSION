@@ -1,0 +1,40 @@
+{{ form_start(form) }}
+<div class="row">
+
+    <div class="col-md-6">
+        <label class="text-center">Annonce</label>
+        {{ form_widget(form.annonce ) }}
+        <span class="text-danger">{{ form_errors(form.annonce) }}</span>
+    </div>
+    <div class="col-md-6">
+
+        <label class="text-center">Url de la musique </label>
+        <div class="input-group">
+
+            {{ form_widget(form.url_sono ) }}
+            {{ form_errors(form.url_sono ) }}
+            <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-outline-primary" id="submit-type" type="button"><b>Valider</b></button>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <div class="col-md-12">
+        <label for="fname">IFRAME :</label><br>
+        <textarea class="col-md-12" id="iframe" name="Text1" cols="40" rows="5"></textarea>
+    </div>
+    <div class="col-md-12">
+        <audio id="audio" class="form-control" controls autoplay>
+            <source id="audioSource" src="">
+        </audio>
+    </div>
+    <br><br>
+
+    <div class="col-md-12 text-center">
+        <button class="btn  btn-success">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+
+</div>
+{{ form_end(form) }}

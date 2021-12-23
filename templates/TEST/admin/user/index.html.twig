@@ -1,0 +1,127 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block style %}
+    {{ parent() }}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block pagetitle %}
+    User
+{% endblock %}
+
+{% block contenttitlefaicon %}
+    fa fa-dashboard
+{% endblock %}
+
+{% block contenttitle %}
+    Utilisateurs
+{% endblock %}
+
+{% block contentsubtitle %}
+    Liste des utilisateurs
+{% endblock %}
+
+
+{% block pagecontent %}
+    {# <h1>Create new Demeurre</h1>#}
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN VALIDATION STATES-->
+                        <div class="portlet light portlet-fit portlet-form bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-settings font-dark"></i>
+                                    <span class="caption-subject font-dark sbold uppercase"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12" style="margin-bottom: 20px">
+                                    <div class="col-md2">
+                                        <a class="btn btn-default" href="{{ path('app_register') }}">Nouveau</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Nom</th>
+                                            <th>Prenom</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.nom }}</td>
+                                                <td>{{ user.prenom }}</td>
+                                                <td>
+                                                    <a class="btn btn-success btn-xs" href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+                                                    <button type="button" class="btn btn-primary btn-xs userRoles"
+                                                        data-toggle="modal" data-target="#modalUserRole"
+                                                            data-id="{{ user.id }}"
+                                                    >
+                                                        Roles</button>
+                                                    <button type="button" class="btn btn-default btn-xs userPermissions"
+                                                            data-toggle="modal" data-target="#modalUserPermission"
+                                                            data-id="{{ user.id }}"
+                                                    >Permissions</button>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="7">Aucun enregistrement</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{ include('admin/user/modal/_modalUserRole.html.twig') }}
+                                {{ include('admin/user/modal/_modalUserPermission.html.twig') }}
+
+
+                            </div>
+
+
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE BASE CONTENT -->
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+
+    {#<a href="{{ path('demeurre_index') }}">back to list</a>#}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function ()
+        {
+            $("#menuListeUser").addClass("active");
+            $("#treeMenuUser").addClass("active");
+
+        })
+    </script>
+
+    <script src="{{ asset('js/user.js') }}"></script>
+
+{% endblock %}

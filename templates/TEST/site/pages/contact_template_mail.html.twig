@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="fr-FR">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="fr-FR">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="fr-FR">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="fr-FR">
+<!--<![endif]-->
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+
+<body >
+
+
+<p><strong>Bonjour,</strong></p>
+<p>Un client essaie de vous contacter avec les information suivantes:</p>
+
+<p><strong>Sujet:</strong> {{ contact.sujet }}</p>
+<p><strong>Nom:</strong> {{ contact.nom }}</p>
+<p><strong>Prénom:</strong> {{ contact.prenom }}</p>
+<p><strong>Civilité:</strong> {{ contact.civilite }}</p>
+<p><strong>Telephone:</strong> {{ contact.telephone }}</p>
+<p><strong>Email:</strong> {{ contact.email }}</p>
+<p><strong>Ville:</strong> {{ contact.ville }}</p>
+<p><strong>Code postal:</strong> {{ contact.codePostal }}</p>
+<p><strong>Message:</strong> {{ contact.message }}</p>
+
+{% if contact.mailing == true %}
+    <p> <strong>Il souhaite recevoir les offres SITP par e-mail</strong> </p>
+{% endif %}
+
+
+</body>
+</html>

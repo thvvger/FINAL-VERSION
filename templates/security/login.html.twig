@@ -1,0 +1,43 @@
+{% extends 'loginBase.html.twig' %}
+
+
+{% block  body %}
+
+
+    <form method="post" action="{{ path('app_login') }}">
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey |trans(error.messageData,'security') }}</div>
+
+        {% endif %}
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+        <div class="mb-3" style="color: white;">
+            <label>E-mail</label>
+            <input class="form-control form-control-lg" type="email" name="email"
+                   value="{{ last_username }}" placeholder="Entrer votre e-mail"/>
+        </div>
+        <div class="mb-3" style="color: white;">
+            <label>Mot de passe</label>
+            <input class="form-control form-control-lg" type="password" name="password"
+                   placeholder="Entrez votre mot de passe"/>
+            <small>
+                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+            </small>
+        </div>
+        <div>
+            <div class="form-check align-items-center">
+                <input id="customControlInline" type="checkbox" class="form-check-input"
+                       value="remember-me" name="remember-me"
+                       checked>
+                <label class="form-check-label text-small" for="customControlInline"
+                       style="color: white;">Se souvenir de moi</label>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button type="submit" href="#" class="btn btn-lg btn-primary"
+                    style="border: 1px solid white; width: 80%;"> Se connecter</button>
+        </div>
+    </form>
+{% endblock %}

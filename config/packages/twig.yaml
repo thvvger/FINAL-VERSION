@@ -1,0 +1,13 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    globals:
+        contact_mail: 'test@mail.com'
+        MENU_DASHBOARD : "MENU_DASHBOARD"
+        MENU_ANNONCE : "MENU_ANNONCE"
+        MENU_SONORISATION : "MENU_SONORISATION"
+        MENU_ADMIN : "MENU_ADMIN"
+        MENU_COMPTE : "MENU_COMPTE"
+    form_themes: ['bootstrap_4_layout.html.twig']
+
+
+

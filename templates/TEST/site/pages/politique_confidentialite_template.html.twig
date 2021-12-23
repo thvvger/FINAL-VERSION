@@ -1,0 +1,75 @@
+{% extends "site/base.html.twig" %}
+
+
+{% block breadcrumb %}
+    <aside>
+        <nav id="breadcrumb" class="w1200 marge-auto clearfix">
+            <ul class="breadcrumbs" itemscope itemtype="//schema.org/BreadcrumbList">
+                <li>Vous êtes ici :</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="index.html"><span
+                                itemprop="name">Accueil</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="#"><span
+                                itemprop="name">POLITIQUE & CONFIDENTIALITE</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><span itemprop="name">
+                        {% block pageBreadCrumb %}-{% endblock %}
+                    </span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="w900 fright">
+        <div class="region region-content">
+            <section id="block-system-main" class="block block-system clearfix">
+
+                <div class="content">
+                    <section class="clearfix w900 marge-auto fright" id="edito-detail">
+                        <div class="clearfix contextual-links-region" id="edito-heading">
+
+                            <div id="edito-article" class="cadre-blanc clearfix">
+                                <div class="mceContentBody">
+                                    {% block contentPage %}
+
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    {% block menuGauche %}
+        <aside id="edito-aside" class="clearfix w280 fleft">
+            <header onclick="$(this).toggleClass('expanded');">Politique & Confidentialité</header>
+            <nav class="edito-nav">
+                <span class="triangle"></span>
+                <ul class="edito-nav-list">
+                    <li class="rub-bord"><a href="{{ path('vie_privee') }}" class="link" id="menuViePrivee">Protection des données</a></li>
+                    <li class="rub-bord"><a href="{{ path('moyen_paiement') }}" class="link" id="menuMoyenPaiement">Moyens de paiement acceptés</a>
+                    </li>
+                    <li class="rub-bord"><a href="{{ path('condition_utilisation') }}" class="link" id="menuConditionUtilisation">CGU</a></li>
+                    <li class="rub-bord"><a href="{{ path('mentions_legales') }}" id="menuMentionsLegales" class="link">Mentions Légales</a></li>
+                </ul>
+            </nav>
+        </aside>
+    {% endblock %}
+
+
+{% endblock %}

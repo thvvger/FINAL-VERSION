@@ -1,0 +1,40 @@
+{% extends 'site/pages/politique_confidentialite_template.html.twig' %}
+
+{% block pageBreadCrumb %} Moyens de paiement acceptés {% endblock %}
+
+{% block contentPage %}
+    <h2>
+        QUELS SONT LES MOYENS DE PAIEMENT ACCEPTÉS SUR NOTRE SITE ?
+    </h2>
+
+    <div>
+
+        <p><strong>Nous acceptons les moyens de paiement suivant :</strong><br/><br/>
+
+            • Carte Bancaire VISA ou Master card </br>
+            • Transfert par Mobile (Mobile Money-MTN, Moov money-MOOV)</br>
+            • Paypal</br>
+            </br></br> Attention, toutefois si vous êtes basés à l’international, Pour
+            des paiements par chèque ou par transfert d'argent( western union, Money
+            Gram, wari, BOA Express...) , vous pouvez contacter directement la Direction
+            Générale de SITP par mail ou par téléphone. </br>En revanche pour cette
+            procédure les transactions sont gérées en dehors de notre plateforme
+            Web. </br></br>Nous n’acceptons pas les paiement par Bitcoin ou Ethereum.
+        </p>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menuMoyenPaiement").addClass('current')
+    </script>
+
+{% endblock %}
+

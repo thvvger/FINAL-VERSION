@@ -1,0 +1,124 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block pagetitle %}
+    Utilisateur
+{% endblock %}
+
+{% block contenttitlefaicon %}
+    fa fa-dashboard
+{% endblock %}
+
+{% block contenttitle %}
+    Utilisateur
+{% endblock %}
+
+{% block contentsubtitle %}
+    Nouvel utilisateur
+{% endblock %}
+
+
+
+{% block pagecontent %}
+    {# <h1>Create new Demeurre</h1>#}
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN VALIDATION STATES-->
+                        <div class="portlet light portlet-fit portlet-form bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-settings font-dark"></i>
+                                    <span class="caption-subject font-dark sbold uppercase"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    {{ form_start(form) }}
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Nom</label>
+                                            {{ form_widget(form.nom, {'attr': {'class':'form-control'}}) }}
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Prenom</label>
+                                            {{ form_widget(form.prenom, {'attr': {'class':'form-control'}}) }}
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Email</label>
+                                            {{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}
+                                            <div>
+                                                {{ form_errors(form.email) }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top: 30px;">
+                                        <div class="col-md-4">
+                                            <label>Mot de passe</label>
+                                            {{ form_widget(form.plainPassword, {'attr': {'class':'form-control'}}) }}
+                                            <div>
+                                                {{ form_errors(form.plainPassword) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Confirmation</label>
+                                            {{ form_widget(form.plainPasswordConfirm, {'attr': {'class':'form-control'}}) }}
+                                            <div>
+                                                {{ form_errors(form.plainPasswordConfirm) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>&nbsp;</label>
+                                            <button  type="submit" class="btn btn-primary form-control">Enregistrer</button>
+
+                                        </div>
+                                    </div>
+
+                                    {#{{ form_row(form.agreeTerms) }}#}
+                                    {{ form_end(form) }}
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE BASE CONTENT -->
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+
+    {#<a href="{{ path('demeurre_index') }}">back to list</a>#}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+
+            $("#menuNouveauUser").addClass("active");
+            $("#treeMenuUser").addClass("active");
+        })
+    </script>
+{% endblock %}

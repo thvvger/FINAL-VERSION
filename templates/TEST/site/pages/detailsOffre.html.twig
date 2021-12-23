@@ -1,0 +1,179 @@
+{% extends 'site/base.html.twig' %}
+
+{% block breadcrumb %}
+    <aside>
+        <nav id="breadcrumb" class="w1200 marge-auto clearfix">
+            <ul class="breadcrumbs" itemscope itemtype="//schema.org/BreadcrumbList">
+                <li>Vous êtes ici :</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="index.html"><span
+                                itemprop="name">Accueil</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="#"><span
+                                itemprop="name">Qui sommes nous ?</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><span itemprop="name">Bien à la
+                    {% if offre.typeoffre == "VENDRE" %} vente{% else %} location {% endif %}
+                    </span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+{% endblock %}
+
+{% block content %}
+
+    <div class="region region-content">
+        <section id="block-system-main" class="block block-system clearfix">
+
+
+            <div class="content">
+                <div class="clearfix w1200 marge-auto">
+
+
+                    <a
+                            href="{% if offre.typeOffre == "VENDRE" %} {{ path('acheter') }} {% else %} {{ path('louer') }} {% endif %}"
+
+                            class="clearfix retour-actu retour-top bt-view-all"><span
+                                class="fleche-retour"></span>Retour aux annonces</a>
+                </div>
+                <article id="product-detail"
+                         class="ad clearfix w1200 marge-auto have-cadres contextual-links-region">
+                    <div class="clearfix w820" id="product-heading">
+                        <header class="clearfix heading">
+                            <h1 class="page-title clearfix">
+
+                                {#{% if offre.typeBien %} {{ offre.typeBien.libelleTypeBien }}{% else %} - {% endif %}#}
+                                {#- {{ offre.nombrePieces }} - {{ offre.espace }} m²  #}
+                                {#<span class="ville">{{ offre.villeString }}</span>#}
+
+                                {{ offre.titreOffre }}
+                            </h1>
+                            <div class="accroche clearfix"> Quartier {{ offre.quartierString }}  </div>
+                        </header>
+                        <div id="product-slide" class="loading clearfix">
+                            <div class="footer">
+                            </div>
+
+                            <div class="slides clearfix">
+                                {% if imagesOffres is not empty %}
+                                    {% set imageOffre = imagesOffres[0] %}
+                                    <img class="clearfix" align="center" src="{{ imageOffre.url }}" width="820" height="460" alt="" />
+                                {% endif %}
+                            </div>
+
+                            <div class="pager"></div>
+                        </div>
+                    </div>
+
+                    <footer class="clearfix w360" id="product-foot">
+                        <ul class="sharers clearfix">
+                            <li>Partager sur :</li>
+                            <li><a href="#" rel="nofollow"
+                                   class="link imgBt fb"
+                                   onclick="window.open(this.href, 'popupwindow', 'width=700,height=500,scrollbars,resizable'); return false;"><span>Facebook</span></a>
+                            </li>
+                            <li><a href="#" rel="nofollow"
+                                   class="link imgBt tw"
+                                   onclick="window.open(this.href, 'popupwindow', 'width=700,height=500,scrollbars,resizable'); return false;"><span>Twitter</span></a>
+                            </li>
+                            <li><a href="#" rel="nofollow"
+                                   class="link imgBt ld"
+                                   onclick="window.open(this.href, 'popupwindow', 'width=700,height=500,scrollbars,resizable'); return false;"><span>Linkedin</span></a></li>
+                        </ul>
+                        <div
+                                class="cadre-rouge clearfix">
+                            <div class="price"><span>{{ offre.prix |number_format(0, '.', ' ')}}F</span><sup>*</sup></div>
+                            <div class="ref">Réf.&nbsp;:&nbsp;0119</div>
+                            <div class="product-contact">
+                                <a id="product-contact"
+                                   href="#" class="ctools-use-modal ctools-modal-lamotte-alert-style link"
+                                   rel="nofollow"><span>Souhaitez-vous réserver</span>Réserver ce bien</a>
+                            </div>
+                            <div class="or"><span>ou</span></div>
+                            <div class="callback">
+                                <p> Nous contacter par mail : </br>contact@sarano-itp.com </p>
+
+                            </div>
+
+                            <div class="about">* Honoraires inclus charge acquéreur.</div>
+                        </div>
+                    </footer>
+
+                    <div class="clearfix w1200" id="product-tabs">
+                        <span class="deco-r"></span>
+                        <ul
+                                class="clearfix tabs two-tabs">
+                            <li><a href="#description"><span class="container">Description de l'annonce</span><span
+                                            class="arrow"></span></a></li>
+
+                        </ul>
+                        <div class="cadre-blanc clearfix tabs-contents">
+                            <div id="description" class="clearfix tabs-panel">
+
+                                <div class="dpe-field w720 fleft">
+                                    <div class="mceContentBody">
+                                        <h2>
+                                            {% if offre.typeBien %} {{ offre.typeBien.libelleTypeBien }}{% else %} {% endif %}
+                                            {% if offre.natureBien %} {{ offre.natureBien.libelleNatureBien }}{% else %} - {% endif %}
+                                             - à {{ offre.quartierString }}
+                                        </h2>
+
+                                        {{ offre.description }}
+
+                                    </div>
+
+                                    <div class="description-details">
+                                        <h3><span>À propos</span> de cette annonce</h3>
+                                    </div>
+
+                                    <div class="description-list">
+                                        <ul class="description-list">
+
+                                            {% for caracteristiqueOffre in caracteristiquesOffres %}
+                                                <li class="plus clearfix"><span
+                                                            class="ico-produit ico-plus"></span>
+                                                    {{ caracteristiqueOffre.nombre }} {{ caracteristiqueOffre.caracteristique.libelleCaracteristique }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="dpe-field w360 fright">
+                                    <div class="">
+                                        <div class="">
+                                            {#<a href="#"><img src="{{ asset('template/sites/default/files/assets/images/capbeaulieu.gif') }}" width="350" height="250" alt="" /></a>#}
+                                            {% for imageOffre in imagesOffres %}
+                                                <a href="{{ imageOffre.url }}">
+                                                    <img src="{{ asset(imageOffre.url) }}" alt="Image" width="100" height="100">
+                                                </a>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        // $("#menuLouer").addClass('current')
+    </script>
+
+{% endblock %}

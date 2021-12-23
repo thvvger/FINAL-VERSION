@@ -1,0 +1,164 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    <style>
+        /*.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }*/
+    </style>
+{% endblock %}
+
+{% block pagetitle %}
+    Dashboard
+{% endblock %}
+
+{% block contenttitlefaicon %}
+    fa fa-dashboard
+{% endblock %}
+
+{% block contenttitle %}
+    Tableau de bord
+{% endblock %}
+
+{% block contentsubtitle %}
+    Aperçu global de l'activité immobilière
+{% endblock %}
+
+
+{% block pagecontent %}
+    {# <h1>Create new Demeurre</h1>#}
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN VALIDATION STATES-->
+                        <div class="portlet light portlet-fit portlet-form bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-settings font-dark"></i>
+                                    <span class="caption-subject font-dark sbold uppercase"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="widget-small warning coloured-icon"><i class="icon fa fa-exclamation fa-5x"></i>
+                                        <div class="info">
+                                            <h4><a href="{{ path('offre_index', {'parametre':'no-validate'}) }}">Offres non validées</a> </h4>
+                                            <p><b>{{ offresNonValiders|length }}</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="widget-small primary coloured-icon"><i class="icon fa fa-thumbs-up fa-5x"></i>
+                                        <div class="info">
+                                            <h4><a href="{{ path('offre_index', {'parametre':'publier'}) }}">Offres publiées</a></h4>
+                                            <p><b>{{ offresPubliers|length }}</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="widget-small danger coloured-icon"><i class="icon fa fa-thumbs-down fa-5x"></i>
+                                        <div class="info">
+                                            <h4><a href="{{ path('offre_index', {'parametre':'depublier'}) }}">Offres dé-publiées</a></h4>
+                                            <p><b>{{ offresDePubliers|length }}</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END VALIDATION STATES-->
+
+
+                            <div class="row" style="margin-top: 40px;">
+                                <div class="col-md-12">
+                                    <h3>Liste des offres qui arrivent à expiration ({{ offresExpirees|length }})</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Offre</th>
+                                            <th>Type de bien</th>
+                                            <th>Etat du bien</th>
+                                            <th>Date Expiration</th>
+                                            <th>Expire dans</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for offre in offresExpirees %}
+                                            <tr>
+                                                <td>{{ offre.typeOffre }}</td>
+                                                <td>
+                                                    {% if offre.typeBien %}
+                                                        {{ offre.typeBien.libelleTypeBien }}
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if offre.etatBien %}
+                                                        {{ offre.etatBien.libelleEtatBien }}
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if offre.dateExpiration %}
+                                                        {{ offre.dateExpiration|date('d/m/Y') }}
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% set offresExpirers = getNotifications() %}
+                                                    {% if offre.dateExpiration %}
+                                                        {% set difference = date(offre.dateExpiration).diff(date('now')) %}
+                                                        {{ difference.days+1 }} jour(s)
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+
+                                                    <a href="{{ path('offre_show',{'id':offre.id}) }}" class="btn btn-default btn-xs">Détails</a>
+
+                                                    <a href="{{ path('offre_edit', {'id':offre.id}) }}"
+                                                       class="btn btn-primary btn-xs">
+                                                        Modifier
+                                                    </a>
+
+                                                    <button class="btn btn-xs btn-danger btnDelete"
+                                                            data-toggle="modal" data-target="#modal"
+                                                            data-id="{{ offre.id }}"
+                                                    >
+                                                        Supprimer
+                                                    </button>
+
+
+                                                </td>
+                                            </tr>
+
+                                        {% endfor %}
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE BASE CONTENT -->
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+
+    {#<a href="{{ path('demeurre_index') }}">back to list</a>#}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            $("#menuDaschboard").addClass("active");
+
+        })
+    </script>
+{% endblock %}

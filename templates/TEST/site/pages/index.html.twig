@@ -1,0 +1,317 @@
+{% extends "site/base.html.twig" %}
+
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="region region-content have-cadres">
+        <section id="home-slide" class="clearfix w820 clearfix">
+
+
+            <div class="content">
+                <ul class="slides clearfix">
+                    <li class="slide clearfix">
+                        <a href="#"
+                           data-title="Espace client"
+                           data-image="" class="link">
+                            <div class="illus">
+                                <a href="#"><img
+                                            src="{{ asset('template/sites/default/files/styles/slideshow/public/assets/images/espace-client-lamotte-gestion-transaction3acc.png') }}"
+                                            width="820" height="450"
+                                            alt="Lamotte Gestion Transaction lance &quot;Mon espace client&quot;"/></a>
+                            </div>
+                            <header class="heading">
+                                <div class="wrapper-heading">
+                                    <h2 class="title">Investir en Afrique</h2>
+                                </div>
+                                <div class="wrapper-see-offer">
+                                    <span class="text">Voir l'offre</span>
+                                </div>
+                            </header>
+                            <div class="content">
+                            </div>
+                            <footer class="footer">
+                            </footer>
+                        </a>
+                    </li>
+                    <li class="slide clearfix">
+                        <a href="#"
+                           data-title="Espace client"
+                           data-image="" class="link">
+                            <div class="illus">
+                                <a href="#"><img
+                                            src="{{ asset('template/sites/default/files/styles/slideshow/public/assets/images/banner sitp2.png') }}"
+                                            width="820" height="450"
+                                            alt="SITP Gestion Transaction lance &quot;Mon espace client&quot;"/></a>
+                            </div>
+                            <header class="heading">
+
+                            </header>
+                            <div class="content">
+                            </div>
+                            <footer class="footer">
+                            </footer>
+                        </a>
+                    </li>
+                    <li class="slide clearfix">
+                        <a href="#"
+                           data-title="Espace client"
+                           data-image="" class="link">
+                            <div class="illus">
+                                <a href="#"><img
+                                            src="{{ asset('template/sites/default/files/styles/slideshow/public/assets/images/banner sitp3.png') }}"
+                                            width="820" height="450"
+                                            alt="SITP Gestion Transaction lance &quot;Mon espace client&quot;"/></a>
+                            </div>
+                            <header class="heading">
+
+                            </header>
+                            <div class="content">
+                            </div>
+                            <footer class="footer">
+                            </footer>
+                        </a>
+                    </li>
+                </ul>
+                <div class="pager"></div>
+            </div>
+        </section>
+        <!-- /.section, /#slider fin -->
+
+
+        <section id="search-bien" class="clearfix w360 clearfix">
+            <ul class="tabs clearfix">
+                <li><a href="#louer-form">Louer</a></li>
+                <li><a href="#acheter-form">Acheter</a></li>
+            </ul>
+            <form action="{{ path('louer') }}" method="post" id="louer-form" accept-charset="UTF-8">
+                <div>
+                    {#<div class="form-field form-type-select">#}
+                        {#<label for="edit-pays" class="label">Pays</label>#}
+                        {#<select id="edit-pays" name="pays" class="form-select">#}
+                            {#<option value="1">BENIN</option>#}
+
+                        {#</select>#}
+                    {#</div>#}
+                    {#<input type="hidden" name="cible" value="locataire"/>#}
+                    <div id="form-ville-louer">
+                        <div class="form-field form-type-select">
+                            <label for="ville" class="label">Ville</label>
+                            <input type="text" id="ville" name="ville" class="villeRecherche" list="villeRecherche-datalist"
+                                   autocomplete="off"
+                                   style="width: 275px; border: 1px solid #d5d5d5; display: block; padding: 7px 10px; border-radius: 3px">
+
+                            <datalist id="villeRecherche-datalist"></datalist>
+                        </div>
+                    </div>
+                    <div class="form-field form-type-select">
+                        <label for="typeBien" class="label">Type de bien à louer</label>
+                        <select id="typeBien" name="typeBien" class="form-select">
+                            <option value="-1">- Indifférent -</option>
+                            {% for typeBien in typesBiens %}
+                                <option {% if post.typeBien is defined and post.typeBien == typeBien.id%}selected{% endif %} value="{{ typeBien.id }}">{{ typeBien.libelleTypeBien }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    {#<div class="form-field form-field-rooms form-field">#}
+                        {#<div class="form-field form-type-select">#}
+                            {#<label for="nombrePiece" class="label">Nombre de pièces</label>#}
+                            {#<select id="nombrePiece" name="nombrePiece" class="form-select">#}
+                                {#<option value="-1">- Indifférent -</option>#}
+                                {#{% for nbPiece in nombrePieces %}#}
+                                    {#<option {% if post.nombrePiece is defined and post.nombrePiece == nbPiece%}selected{% endif %} value="{{ nbPiece }}">{{ nbPiece }}</option>#}
+                                {#{% endfor %}#}
+                            {#</select>#}
+                        {#</div>#}
+                    {#</div>#}
+                    <div class="form-field form-type-select">
+                        <label for="espace" class="label">Surface minimum</label>
+                        <select id="espace" name="espace" class="form-select">
+                            <option value="-1">- Indifférent -</option>
+                            {% for espace in espaces %}
+                                <option {% if post.espace is defined and post.espace == espace %}selected{% endif %} value="{{ espace }}">{{ espace }} m²</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-field form-type-select">
+                        <label for="prix" class="label">Loyer</label>
+                        <select id="prix" name="prix" class="form-select">
+                            <option value="-1">- Indifférent -</option>
+                            {% for cle,prix in arrayPrix %}
+                                <option {% if post.prix is defined and post.prix == cle %}selected{% endif %} value="{{ cle }}">{{ prix }} FCFA</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="solr-results-louer" class="subs-field clearfix"><input type="submit" id="edit-submit"
+                                                                                    name="op"
+                                                                                    value="Voir les résultats"
+                                                                                    class="form-submit"/></div>
+                    <input type="hidden" name="action" value="louer"/>
+                    <input type="hidden" name="form_build_id"
+                           value="form-1-wE6qSMdCGx8vIFzQwUBdVC1SoWhT0waA1_ZA9_Ud0"/>
+                    <input type="hidden" name="form_id" value="lamotte_search_facet_form"/>
+                </div>
+            </form>
+
+            <form action="{{ path('acheter') }}" method="post" id="acheter-form" accept-charset="UTF-8">
+                <div>
+                    {#<div class="form-field form-type-select">#}
+                        {#<label for="edit-departement--2" class="label">Pays</label>#}
+                        {#<select id="edit-departement--2" name="departement" class="form-select">#}
+                            {#<option value="1">BENIN</option>#}
+                        {#</select>#}
+
+                    {#</div>#}
+                    <input type="hidden" name="cible" value="acquéreur"/>
+                    <div id="form-ville-acheter">
+                        <div class="form-field form-type-select">
+                            <label for="ville" class="label">Ville</label>
+                            <input type="text" id="ville" name="ville" class="villeRecherche" list="villeRecherche-datalist"
+                                    autocomplete="off"
+                                   style="width: 275px; border: 1px solid #d5d5d5; display: block; padding: 7px 10px; border-radius: 3px">
+
+                            <datalist id="villeRecherche-datalist"></datalist>
+                        </div>
+                    </div>
+                    <div class="form-field form-type-select">
+                        <label for="typeBien" class="label">Type de bien à acheter</label>
+                        <select id="typeBien" name="typeBien" class="form-select">
+                            <option value="-1">- Indifférent -</option>
+                            {% for typeBien in typesBiens %}
+                                <option {% if post.typeBien is defined and post.typeBien == typeBien.id%}selected{% endif %} value="{{ typeBien.id }}">{{ typeBien.libelleTypeBien }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-field form-type-select">
+                        <label for="espace" class="label">Surface minimum</label>
+                        <select id="espace" name="espace" class="form-select">
+                            <option value="-1">- Indifférent -</option>
+                            {% for espace in espaces %}
+                                <option {% if post.espace is defined and post.espace == espace %}selected{% endif %} value="{{ espace }}">{{ espace }} m²</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div id="solr-results-acheter" class="subs-field clearfix"><input type="submit"
+                                                                                      id="edit-submit--2" name="op"
+                                                                                      value="Voir les résultats"
+                                                                                      class="form-submit"/></div>
+                    <input type="hidden" name="action" value="acheter"/>
+                    <input type="hidden" name="form_build_id"
+                           value="form-EeBzyg1aBSikfGYsTZvoyfSG-w9u3kRN9HOBiKwYWVY"/>
+                    <input type="hidden" name="form_id" value="lamotte_search_facet_form"/>
+                </div>
+            </form>
+        </section>
+
+        <!-- /.section, /#form recherche fin -->
+
+        <section id="block-block-6" class="bloc block-bloc clearfix">
+
+
+            <div class="content">
+                <article id="rent-possession">
+                    <div class="cadre-blanc">
+                        <div class="rent-possession-image"><img alt="Un bien à louer"
+                                                                src="{{ section1.imageSection }}"
+                                                                style="width: 168px; height: 252px;"/></div>
+
+                        <div class="rent-possession-content">
+                            <h2 class="title-block">
+                                <span>{% if section1 %} {{ section1.titreSection }} {% endif %}</span>
+                            </h2>
+
+                            <p>{% if section1 %} {{ section1.contenuSection|raw }} {% endif %} <br/><br/><span
+                                        class="rouge">[<a class="fleche-rouge-2" href="#">voir les services</a>]</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="deco-l"> </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- /.section, /#fin Blog de presentation 1 -->
+
+
+        <section id="home-news" class="clearfix w900 relative clearfix">
+            <div class="cadre-blanc clearfix relative">
+
+                <h2 class="title-block"><span>{% if section2 %} {{ section2.titreSection }} {% endif %}</span><br/></h2>
+                <br/>
+                <p>{% if section2 %} {{ section2.contenuSection|raw }} {% endif %} <br/><br/>
+                    <span class="rouge">[<a
+                                class="fleche-rouge-2" href="#">En savoir-plus</a>]
+
+
+    <br/><br/>  <h3 class="title">
+	VOTRE PARTENAIRE POUR DES SOLUTIONS DANS L'IMMOBILIER & LES TRAVAUX PUBLICS.</h3>
+                    </span>
+
+            </div>
+        </section>
+        <!-- /.section, /#fin Blog de presentation 2 -->
+
+
+        <section id="epub" class="clearfix w280 relative block block-nodeblock clearfix">
+
+            <div class="cadre-blanc cadre-epub clearfix">
+                <div class="contextual-links-region">
+                    <a href="#"><img src="{{ asset('template/sites/default/files/assets/images/capbeaulieu.gif') }}"
+                                     width="250"
+                                     height="250" alt=""/></a></div>
+            </div>
+            <span class="deco-r"></span>
+        </section>
+
+        <!-- /.section, /#fin Blog de presentation 3  -->
+
+        <section id="home-services" class="clearfix w1200 relative clearfix">
+            <div class="cadre-blanc clearfix relative">
+                <a href="#" class="link bt-view-all">Tous nos services</a>
+                <h2 class="title-block">
+                    <span>Nos Prestations</span> &amp; <span>garanties</span>
+                </h2>
+                <div class="services">
+
+                    {% for service in services %}
+                        <article class="service clearfix contextual-links-region">
+                            <a href="#" class="link clearfix relative">
+
+                                <img class="illus"
+                                     src="{{ service.imageService }}"
+                                     width="95" height="95" alt=""/>
+                                <h3 class="title">{{ service.libelleService }}</h3>
+
+                                <p>{{ service.descriptionService }}</p>
+                            </a>
+                        </article>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+            <span class="deco-l"></span>
+        </section>
+        <!-- /.section, /#fin Blog de nos services -->
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $('body').addClass('html front not-logged-in page-accueil no-sidebar  page-home')
+        $("#home").addClass('current')
+    </script>
+
+    <script src="{{ asset('js/offre.js') }}"></script>
+{% endblock %}

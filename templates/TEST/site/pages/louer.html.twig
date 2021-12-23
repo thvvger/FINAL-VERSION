@@ -1,0 +1,212 @@
+{% extends 'site/base.html.twig' %}
+
+{% block breadcrumb %}
+    <aside>
+        <nav id="breadcrumb" class="w1200 marge-auto clearfix">
+            <ul class="breadcrumbs" itemscope itemtype="//schema.org/BreadcrumbList">
+                <li>Vous êtes ici :</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="index.html"><span
+                                itemprop="name">Accueil</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="#"><span
+                                itemprop="name">Qui sommes nous ?</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><span itemprop="name">Bien à la location</span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+{% endblock %}
+
+{% block content %}
+
+    <aside class="clearfix w280 fleft" id="louer-aside">
+        <header class="title">Affiner votre recherche</header>
+        <a id="filter-button" class="only-mobile" onclick="Front.displayFilters();">Afficher les filtres</a>
+        <div class="aside-scroll contextual-links-region">
+            <form  method="post" id="habiter-form" accept-charset="UTF-8">
+                <div>
+                    <div class="parts clearfix">
+                        <div class="left-part clearfix">
+                            <div class="form-field form-type-select"></div>
+                            <input type="hidden" name="cible" value="locataire"/>
+                            <div id="form-ville-louer">
+                                <div class="form-field form-type-select">
+                                    <label for="ville" class="label">Ville</label>
+                                    <input type="text" id="ville" name="ville" class="villeRecherche" list="villeRecherche-datalist"
+                                           value="{% if post.ville is defined %}{{ post.ville }}{% endif %}" autocomplete="off"
+                                           style="width: 210px; border: 1px solid #d5d5d5; display: block; padding: 7px 10px; border-radius: 3px">
+
+                                    <datalist id="villeRecherche-datalist"></datalist>
+                                </div>
+                            </div>
+                            <div class="form-field form-type-select">
+                                <label for="typeBien" class="label">Type de bien à louer</label>
+                                <select id="typeBien" name="typeBien" class="form-select">
+                                    <option value="-1">- Indifférent -</option>
+                                    {% for typeBien in typesBiens %}
+                                        <option {% if post.typeBien is defined and post.typeBien == typeBien.id%}selected{% endif %} value="{{ typeBien.id }}">{{ typeBien.libelleTypeBien }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {#<div class="form-field form-field-rooms ">#}
+                                {#<div class="form-field form-type-select">#}
+                                    {#<label for="nombrePiece" class="label">Nombre de pièces</label>#}
+                                    {#<select id="nombrePiece" name="nombrePiece" class="form-select">#}
+                                        {#<option value="-1">- Indifférent -</option>#}
+                                        {#{% for nbPiece in nombrePieces %}#}
+                                            {#<option {% if post.nombrePiece is defined and post.nombrePiece == nbPiece%}selected{% endif %} value="{{ nbPiece }}">{{ nbPiece }}</option>#}
+                                        {#{% endfor %}#}
+                                    {#</select>#}
+                                {#</div>#}
+                            {#</div>#}
+                            <div class="form-field form-type-select">
+                                <label for="espace" class="label">Surface minimum</label>
+                                <select id="espace" name="espace" class="form-select">
+                                    <option value="-1">- Indifférent -</option>
+                                    {% for espace in espaces %}
+                                        <option {% if post.espace is defined and post.espace == espace %}selected{% endif %} value="{{ espace }}">{{ espace }} m²</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-field form-type-select">
+                                <label for="prix" class="label">Loyer</label>
+                                <select id="prix" name="prix" class="form-select">
+                                    <option value="-1">- Indifférent -</option>
+                                    {% for cle,prix in arrayPrix %}
+                                        <option {% if post.prix is defined and post.prix == cle %}selected{% endif %} value="{{ cle }}">{{ prix }} FCFA</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div id="solr-results-louer" class="subs-field clearfix">
+                                <input type="submit" id="edit-submit" name="op" value="Voir les résultats" class="form-submit"/>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="alert-button-wrapper">
+                        <div class="alert-button"><a href="#" class="criteres"></a><input class="alerte-url"
+                                                                                          type="hidden" name="url"
+                                                                                          value=""/>
+                            <input class="ctools-use-modal ctools-modal-lamotte-alert-style form-submit"
+                                   type="submit" id="alerte" name="op"
+                                   value="Alertez-moi quand une annonce corres-pondant à ces critères entre sur le site."/><span
+                                    class="ico-mail"></span></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </aside>
+
+
+    <section class="clearfix w900 marge-auto fright mb20" id="investir-detail">
+
+        <div class="region region-content">
+            <section id="block-system-main" class="block block-system clearfix">
+
+
+                <div class="content">
+                    <div class="clearfix relative" id="louer-heading">
+                        <header class="node-header clearfix heading text_align_center contextual-links-region">
+                        </header>
+                        <footer id="tous-les-programmes" class="clearfix relative">
+                            <span class="deco-r"></span>
+                            <div class="clearfix cadre-blanc"><h2 class="article-title"><span class="texte-rouge">Notre sélection</span>
+                                    de bien à la location</h2>
+
+                                {% for offre in pagination %}
+
+                                    <article class="clearfix programme fleft contextual-links-region mr5">
+                                        <a href="{{ path('details_offre', {'id':offre.id}) }}">
+                                            <span class="onglet-programme">
+                                                <span class="nouveaute clearfix fleft current">Nouveauté</span>
+                                            </span>
+                                            {#<h3>#}
+                                                <div class="programme-img relative">
+
+                                                    {% set imagesOffre = images[offre.id] %}
+                                                    {% if imagesOffre is not empty %}
+                                                        {% set imageOffre = imagesOffre[0] %}
+                                                        <img class="clearfix" align="center" src="{{ imageOffre.url }}" width="260" height="150" alt="" />
+
+                                                    {% else %}
+
+                                                        <img class="clearfix" src=""
+                                                             width="260" height="150" alt=""/>
+                                                    {% endif %}
+
+
+
+                                                    <span class="ville-programme absolute">
+                                                        <strong>{{ offre.villeString }}</strong>
+                                                    </span>
+                                                </div>
+                                                <span class="nom-programme">
+                                                    {#{% if offre.typeBien %}#}
+                                                        {#{{ offre.typeBien.libelleTypeBien }}#}
+                                                    {#{% else %}#}
+                                                        {#-#}
+                                                    {#{% endif %}#}
+                                                    {#-#}
+                                                    {#{{ offre.nombrePieces }}#}
+                                                    {#- {{ offre.espace }} m²#}
+                                                    {{ offre.titreOffre }}
+                                                </span>
+                                            {#</h3>#}
+
+                                            <p class="reference"> {{ offre.quartierString }} - Ref. 0119 </p>
+                                            <p class="programme-prix"> {{ offre.prix|number_format(0, '.', ' ') }} F <span class="perMonth">par mois</span>
+                                            </p>
+
+                                        </a>
+                                    </article>
+
+
+                                {% endfor %}
+
+
+
+                            </div>
+                        </footer>
+                        <div id='pager' class='w900 fright clearfix'>
+                            {#<ul>#}
+                                {#<li class='prev'><a href='louer.html?page=1'#}
+                                                    {#title='Aller à la page précédente'><span class='arrow'></span>Précédente</a>#}
+                                {#</li>#}
+                                {#<li class='active'><a href='louer.html?page=1' title='Page 1'>1</a></li>#}
+                                {#<li class=''><a href='louer.html?page=2' title='Page 2'>2</a></li>#}
+                                {#<li class='next'><a href='louer.html?page=3'#}
+                                                    {#title='Aller à la page suivante'>Suivante<span#}
+                                                {#class='arrow'></span></a></li>#}
+                            {#</ul>#}
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menuLouer").addClass('current')
+    </script>
+
+    <script src="{{ asset('js/offre.js') }}"></script>
+    <script src="{{ asset('js/paginator.js') }}"></script>
+
+{% endblock %}

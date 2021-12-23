@@ -1,0 +1,129 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block style %}
+    {{ parent() }}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block pagetitle %}
+    Pages et sections
+{% endblock %}
+
+{% block contenttitlefaicon %}
+    fa fa-dashboard
+{% endblock %}
+
+{% block contenttitle %}
+    Pages et sections
+{% endblock %}
+
+{% block contentsubtitle %}
+    Liste des services
+{% endblock %}
+
+
+{% block pagecontent %}
+    {# <h1>Create new Demeurre</h1>#}
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN VALIDATION STATES-->
+                        <div class="portlet light portlet-fit portlet-form bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-settings font-dark"></i>
+                                    <span class="caption-subject font-dark sbold uppercase"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12" style="margin-bottom: 20px">
+                                    <div class="col-md2">
+                                        <a class="btn btn-default" href="{{ path('service_new') }}">Nouveau</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Libelle</th>
+                                            <th>Description</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for service in services %}
+                                            <tr>
+                                                <td>{{ service.libelleService }}</td>
+                                                <td>{{ service.descriptionService }}</td>
+                                                <td>
+                                                    <img height="40px;" src="{{ service.imageService }}" alt=""></td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="{{ path('service_edit', {'id': service.id}) }}">Modifier</a>
+                                                    <button type="button" class="btn btn-danger supprimerService"
+                                                            data-id="{{ service.id }}"
+                                                            data-toggle="modal" data-target="#modalConfirmationSuppression">
+                                                        Supprimer
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="7">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                {{ include('admin/service/modal/_modalConfirmationSuppression.html.twig') }}
+
+                            </div>
+
+
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE BASE CONTENT -->
+        </div>
+        <!-- END CONTENT BODY -->
+    </div>
+
+    {#<a href="{{ path('demeurre_index') }}">back to list</a>#}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function ()
+        {
+            $("#menuListeService").addClass("active");
+            $("#treeMenuPagesSections").addClass("active");
+
+
+            // $('#card').hide();
+            $('.supprimerService').click(function () {
+                var id = $(this).data('id')
+                $('#idService').val(id)
+            })
+        })
+    </script>
+{% endblock %}
+
+
+

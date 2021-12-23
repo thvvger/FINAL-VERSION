@@ -1,0 +1,45 @@
+{% extends 'site/pages/page_template.html.twig' %}
+
+{% block contentPage %}
+    <h2>
+        {% if page %} {{ page.titre|raw }} {% endif %}
+    </h2>
+
+    <div>
+        {% if page %} {{ page.contenu|raw }} {% endif %}
+
+    </div>
+
+{% endblock %}
+
+
+{% block pageImages %}
+    <div id="sous-rubrique-detail">
+        <div id="sous-rubrique-heading">
+            <div id="sous-rubrique-article" class="clearfix relative">
+
+                {% for image in page.images.values %}
+                    {#<article>#}
+                    <a href="#">
+                        <img src="{{ image.url }}" width="287" height="211" alt=""/>
+                    </a>
+                    {#</article>#}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menu_{% if page %}{{ page.slug }}{% endif %}").addClass('current')
+    </script>
+
+{% endblock %}
+

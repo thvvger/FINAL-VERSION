@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrganisationSecteurActivite{% endblock %}
+
+{% block body %}
+    <h1>OrganisationSecteurActivite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ organisation_secteur_activite.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ organisation_secteur_activite.designation }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ organisation_secteur_activite.createdAt ? organisation_secteur_activite.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ organisation_secteur_activite.updatedAt ? organisation_secteur_activite.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Deleted</th>
+                <td>{{ organisation_secteur_activite.deleted ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('organisation_secteur_activite_index') }}">back to list</a>
+
+    <a href="{{ path('organisation_secteur_activite_edit', {'id': organisation_secteur_activite.id}) }}">edit</a>
+
+    {{ include('organisation_secteur_activite/_delete_form.html.twig') }}
+{% endblock %}

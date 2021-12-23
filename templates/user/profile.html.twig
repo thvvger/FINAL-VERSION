@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+
+{% block  body %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Profile</h5>
+            <h6 class="card-subtitle text-muted">Modifier votre profile</h6>
+
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+            <div class="col-md-12 text-center mt-5">
+                <button  class="btn btn-success btn-lg">Valider</button>
+
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+{% endblock %}

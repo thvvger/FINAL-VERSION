@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle annonce{% endblock %}
+
+{% block pageTitle %} Ajouter une annonce  texte {% endblock %}
+{% block body %}
+
+    <div class="card">
+        <div class="card-header">
+
+            <h6 class="card-subtitle text-muted"></h6>
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.reference) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.reference) }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.dateExpiration) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.dateExpiration) }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.organisation) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.organisation) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.titre) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.titre) }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.niveauEtude) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.niveauEtude) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.typeContrat) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.typeContrat) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.salaire    ) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.salaire ) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.lieu    ) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.lieu ) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.remuneration    ) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.remuneration ) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label">{{ form_label(form.description    ) }}</label>
+                        <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                            {{ form_widget(form.description ) }}
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label class="form-label">{{ form_label(form.profil_recherche    ) }}</label>
+                            <div class="input-group date" id="datetimepicker-minimum" data-target-input="nearest">
+                                {{ form_widget(form.profil_recherche ) }}
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-success btn-lg btn-block">{{ button_label|default('Enregistrer') }}</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

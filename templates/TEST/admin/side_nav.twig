@@ -1,0 +1,141 @@
+<section class="sidebar">
+    <div class="user-panel">
+        <div class="pull-left image"><img class="img-circle" src="{{ asset('admin/images/user.png') }}"
+                                          alt="User Image"></div>
+        <div class="pull-left info">
+            <p> {% if app.user %} {{ app.user.prenom|default(" ") }} {{ app.user.nom|default(" ") }} {% endif %}</p>
+            <p class="designation">{% if app.user %}  {% endif %}</p>
+        </div>
+    </div>
+    <!-- Sidebar Menu-->
+
+
+    <ul class="sidebar-menu">
+
+        <li class="" id="menuDaschboard">
+            <a href="{{ path('admin_cms') }}">
+                <i class="fa fa-dashboard"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+
+        <li class="treeview" id="treeMenuPagesSections">
+            <a href="#">
+                <i class="fa fa-suitcase"></i>
+                <span>Pages et sections</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="menuListePages">
+                    <a href="{{ path('page_index') }}">
+                        <i class="fa fa-building "></i>
+                        Gestion des pages</a>
+                </li>
+                <li id="menuSections">
+                    <a href="{{ path('page_section_index') }}">
+                        <i class="fa fa-google-wallet"></i>
+                        Sections accueil</a>
+                </li>
+                <li id="menuListeService">
+                    <a href="{{ path('service_index') }}">
+                        <i class="fa fa-google-wallet"></i>
+                        Sections services</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+        {#<li class="" id="menuSections">#}
+            {#<a href="{{ path('page_section_index') }}">#}
+                {#<i class="fa fa-dashboard"></i>#}
+                {#<span>Sections</span></a>#}
+        {#</li>#}
+
+        {#<li class="treeview" id="treeMenuService">#}
+            {#<a href="#">#}
+                {#<i class="fa fa-suitcase"></i>#}
+                {#<span>Services</span>#}
+                {#<i class="fa fa-angle-right"></i>#}
+            {#</a>#}
+            {#<ul class="treeview-menu">#}
+                {#<li id="menuListeService">#}
+                    {#<a href="{{ path('service_index') }}">#}
+                        {#<i class="fa fa-building "></i>#}
+                        {#Liste</a>#}
+                {#</li>#}
+                {#<li id="menuNouveauService">#}
+                    {#<a href="{{ path('service_new') }}">#}
+                        {#<i class="fa fa-google-wallet"></i>#}
+                        {#Nouveau</a>#}
+                {#</li>#}
+
+            {#</ul>#}
+        {#</li>#}
+
+        <li class="treeview" id="treeMenuOffre">
+            <a href="#">
+                <i class="fa fa-suitcase"></i>
+                <span>Offre</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li >
+                    <a class="treeview-item" id="menuListeOffreNonValider" href="{{ path('offre_index', {'parametre':'no-validate'}) }}">
+                        <i class="fa fa-building "></i>
+                        Non validées</a>
+                </li>
+                <li id="menuListeOffre">
+                    <a href="{{ path('offre_index', {'parametre': 'depublier'}) }}">
+                        <i class="fa fa-building "></i>
+                        Dé-Publiées</a>
+                </li>
+                <li id="menuListeOffre">
+                    <a href="{{ path('offre_index', {'parametre': 'publier'}) }}">
+                        <i class="fa fa-building "></i>
+                        Publiées</a>
+                </li>
+
+                <li id="menuNouveauOffre">
+                    <a href="{{ path('offre_new') }}">
+                        <i class="fa fa-google-wallet"></i>
+                        Nouveau</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="treeview" id="treeMenuUser">
+            <a href="#">
+                <i class="fa fa-suitcase"></i>
+                <span>Utilisateur</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li id="menuListeUser">
+                    <a href="{{ path('user_index') }}">
+                        <i class="fa fa-building "></i>
+                        Liste</a>
+                </li>
+                <li id="menuNouveauUser">
+                    <a href="{{ path('app_register') }}">
+                        <i class="fa fa-google-wallet"></i>
+                        Nouveau</a>
+                </li>
+                <li id="menuRole">
+                    <a href="{{ path('role_index') }}">
+                        <i class="fa fa-google-wallet"></i>
+                        Role</a>
+                </li>
+
+                <li id="menuPermission">
+                    <a href="{{ path('permission_index') }}">
+                        <i class="fa fa-google-wallet"></i>
+                        Permission</a>
+                </li>
+
+            </ul>
+        </li>
+
+    </ul>
+</section>

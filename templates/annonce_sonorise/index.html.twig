@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AnnonceSonorise index{% endblock %}
+
+{% block pageTitle %}Liste des annonces sonorisées{% endblock %}
+{% block body %}
+    {% include 'block/other_page_sub_header.html.twig' %}
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Annonces_ audios - [admin]</h5>
+                    <h6 class="card-subtitle text-muted">Retrouvez ici toutes les annonces audios de l'organisation
+                        connectée (Vue admin) </h6>
+                    <h6 class="card-subtitle text-muted" style="margin-top: .5rem;">
+                        <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                        <button class="btn btn-primary btn-warning btn-sm">En traitement</button>
+                        <button class="btn btn-primary btn-danger btn-sm">Expirée / Archivée</button>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <table id="datatables-dashboard-projects" class="table table-bordered datatables-basic table-striped my-0">
+                        <thead>
+                        <tr>
+                            <th>Ann.</th>
+                            <th>Réf.</th>
+                            <th>Nom de fichier</th>
+                            <th class="text-center">Audio</th>
+{#                            <th class="text-center">Référence</th>#}
+                            <th class="">Date</th>
+                            <th class="">Partenaire</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% set sonoIncrementor   =  0 %}
+                        {% for  annonce_sonorise in annonce_sonorises    %}
+                            {% if   annonce_sonorise.annonce.organisation  == app.user.organisation %}
+                                <tr>
+                                    <td>
+                                        <h4 style="font-weight: bold;"><i
+                                                    class="align-middle me-2 fas fa-fw fa-headphones"></i>
+                                        </h4>
+                                    </td>
+                                    <td> {{ annonce_sonorise.annonce.reference }} </td>
+                                    <td style="font-weight: bolder;">
+                                        <a class="text-primary" style="cursor: pointer ;color: #3e4676 !important;"
+                                           href="{{ path('annonce_show', {'id': annonce_sonorise.annonce.id}) }}">
+                                            {{ annonce_sonorise.annonce.titre }}</a>
+                                    </td>
+
+                                    <td>
+                                        {% include '_partials/playButton.html.twig'  with {"annonceSonorise" :annonce_sonorise } %}
+                                    </td>
+{#                                    <td class="text-center">  {{ annonce_sonorise.reference }}  </td>#}
+                                    <td class="  d-md-table-cell">{{ annonce_sonorise.createdAt|date('d/m/Y') }}</td>
+                                    <td class="  d-xl-table-cell">{{ annonce_sonorise.annonce.organisation }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                  {#  <table id="datatables-dashboard-projects" class="table-striped table">
+                        <thead>
+                        <tr>
+                            <th>Réf.</th>
+                            <th>Titre</th>
+                            <th>Upload_Par</th>
+                            <th>Req.</th>
+                            <th>Créa.Date</th>
+                            <th>Audio</th>
+                            <th>Status</th>
+                            <th>Org.</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for annonce_sonorise in annonce_sonorises %}
+                            <tr>
+                                <td>{{ annonce_sonorise.reference }}</td>
+                                <td>{{ annonce_sonorise.annonce.titre }}</td>
+                                <td>{{ annonce_sonorise.annonce.user.nom ~" "~annonce_sonorise.annonce.user.prenom }}</td>
+                                <td>45</td>
+                                <td style="font-weight: bolder;">{{ annonce_sonorise.createdAt|date('d/m/Y') }}</td>
+
+                                <td>
+                                    {% include '_partials/playButton.html.twig'  with {"annonceSonorise" :annonce_sonorise,'showTitle' :false } %}
+                                </td>
+                                <td>
+                                    {% if annonce_sonorise.annonce.status  == 'pending' %}
+
+                                        <button class="btn btn-primary btn-warning btn-sm">A traiter</button>
+                                    {% elseif annonce_sonorise.annonce.status =='sonorise' %}
+                                        <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                                    {% else %}
+                                        <button class="btn">Expirée/Archivéé</button>
+                                    {% endif %}
+                                </td>
+                                <td style="font-weight: bolder;">{{ annonce_sonorise.annonce.organisation.raisonSocial }}</td>
+                                #}{#<td>{{ annonce_sonorise.createdAt ? annonce_sonorise.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}{#
+                                #}{#<td>{{ annonce_sonorise.updatedAt ? annonce_sonorise.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}{#
+                                #}{#<td>{{ annonce_sonorise.deleted ? 'Yes' : 'No' }}</td>#}{#
+                                #}{#<td>#}{#
+                                #}{#<a href="{{ path('annonce_sonorise_show', {'id': annonce_sonorise.id}) }}">show</a>#}{#
+                                #}{#<a href="{{ path('annonce_sonorise_edit', {'id': annonce_sonorise.id}) }}">edit</a>#}{#
+                                #}{#</td>#}{#
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+#}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

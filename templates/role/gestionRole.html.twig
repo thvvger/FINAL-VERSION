@@ -1,0 +1,257 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card p-3">
+        <div class="row">
+            <input type="text" id="objects" hidden>
+            <div class="col-4">
+                <label for="role">Rôles</label>
+                <select class="form-control" name="role" id="role">
+                    <option value="">Selectionnez un role</option>
+                    {% for role in roles %}
+
+                        {% if role_id == role.id %}
+                            <option selected value="{{ role.name }}">{{ role.name }}</option>
+                        {% else %}
+                            <option value="{{ role.name }}">{{ role.name }}</option>
+                        {% endif %}
+
+
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-5">
+                <label for="role">Permissions</label>
+                <select class="form-control" name="permission" id="permission">
+                    <option value="">Selectionnez une permission</option>
+                    {% for permission in permissions %}
+                        <option value="{{ permission.id }}">{{ permission.description }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-3 mt-4 ">
+                <button class="btn btn-warning" id="ajouter" type="submit"><i class="fa fa-plus"></i> Ajouter</button>
+                {# <button class="btn btn-primary" id="toutAjouter" type="submit"><i class="fa fa-plus"></i> Tout Ajouter</button> #}
+            </div>
+        </div>
+        <br><br>
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div style="display: none" id="success-alert" class="  alert alert-success p-2">Mise a jour des
+                    permissions éffectuéees avec succès
+                </div>
+            </div>
+        </div>
+        <table id="resultat" class="table table-bordered table-striped mt-4">
+            <thead>
+            <tr>
+                <th class="text-uppercase tiny-text">#</th>
+                <th class="text-uppercase tiny-text">Roles</th>
+                <th class="text-uppercase tiny-text">Permission</th>
+                <th class="text-uppercase tiny-text text-end">Action</th>
+            </tr>
+            </thead>
+            <tbody id="resultat_body">
+
+            </tbody>
+        </table>
+        <br><br>
+
+        <div class="text-center">
+            <button class="btn btn-primary" type="button" id="save">Enregistrer</button>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        objects = [];
+        let sn = 1;
+        let role = $('#role');
+        let permission = $('#permission');
+        let ajouter = $('#ajouter');
+        let toutAjouter = $('#toutAjouter');
+        let xhrSend = null;
+
+        ajouter.click(function () {
+
+            if (role.val() != "") {
+                if (permission.val() != "") {
+                    if (objects.findIndex(checkExist) === -1) {
+                        object = {
+                            'elementId': (Math.random() + 1).toString(36).substring(7),
+                            'roleCode': role.val(),
+                            'roleLib': $('#role >option:selected').text(),
+                            'permissionCode': permission.val(),
+                            'permissionLib': $('#permission >option:selected').text(),
+                        }
+                        objects.push(object)
+                        insertTable(object)
+
+
+                        $('#objects').val(JSON.stringify(objects))
+                    } else {
+                        warning_noti('Cette rôle a été déjà ajouté!')
+                    }
+                } else {
+                    warning_noti('Aucun permission selectionnez !')
+                }
+            } else {
+                warning_noti('Aucun rôle selectionnez !')
+            }
+        })
+        /*toutAjouter.click(function (){
+            for (const option of document.getElementById('permission')) {
+                if (role.val() != "") {
+                    if (option.value != "") {
+                        if (objects.findIndex(checkExist) === -1) {
+                            object = {
+                                'elementId': (Math.random() + 1).toString(36).substring(7),
+                                'roleCode': role.val(),
+                                'roleLib': $('#role >option:selected').text(),
+                                'permissionCode': permission.val(),
+                                'permissionLib': $('#permission >option:selected').text(),
+                            }
+
+                            objects.push(object)
+                            insertTable(object)
+
+
+                            $('#objects').val(JSON.stringify(objects))
+                        } else {
+                            warning_noti('Cette rôle a été déjà ajouté!')
+                        }
+                    }
+                }
+                // console.log(  option.value);
+            }
+
+        })*/
+        insertTable = function (element) {
+            tr = `
+             <tr id="" class="mb-1">
+                <td>${sn++}</td>
+                <td>${element.roleLib}</td>
+                <td>${element.permissionLib}</td>
+                <td class="text-end">
+                    <button type="button"  class="btn btn-danger p-1 delete"  data-roleId=${element.roleCode} data-permissionId=${element.permissionCode} data-element= ${element.elementId}><i class="fa fa-minus"></i>  </button>
+                </td>
+            </tr>
+            `;
+            $('#resultat > tbody').prepend(tr)
+
+        }
+
+        function checkExist(item) {
+            return item.roleCode === role.val() && item.permissionCode === permission.val()
+        }
+
+        $('#resultat').on("click", ".delete", function (e) {
+            e.preventDefault();
+            let roleId = $(this).attr('data-roleId');
+            let permissionId = $(this).attr('data-permissionId');
+            let elementId = $(this).attr('data-elementId');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ path('ajax_remove_role_permissions') }}",
+                data: {
+                    roleId: roleId,
+                    permissionId: permissionId
+                },
+                success: (data) => {
+                    objects = objects.filter(function (el) {
+                        return el.elementId !== elementId
+                    });
+                    $(this).closest('tr').fadeOut().remove();
+                    $('#objects').val(JSON.stringify(objects))
+                },
+                error: (data) => {
+                    objects = objects.filter(function (el) {
+                        return el.elementId !== elementId
+                    });
+                    $(this).closest('tr').fadeOut().remove();
+                    $('#objects').val(JSON.stringify(objects))
+                    // alert('La requête n\'a pas abouti');
+                }
+            });
+
+
+        })
+        //    delete an element
+
+
+    </script>
+
+    <script>
+        $('#save').click(function () {
+            $('#success-alert').hide()
+            if (objects.length > 0) {
+                xhrSend = $.ajax({
+                    type: 'POST',
+                    url: "{{ path('set_role_permissions') }}",
+                    data: {
+                        permissionsRoles: $('#objects').val()
+                    },
+                    beforeSend: function () {
+                        if (xhrSend != null) {
+                            xhrSend.abort()
+                        }
+                    },
+                    success: function (data) {
+                        $('#success-alert').show(500)
+                        setTimeout(() => {
+                            $('#success-alert').hide(500)
+                        }, 3000)
+
+                    },
+                    error: function () {
+                        // alert('La requête n\'a pas abouti');
+                    }
+                });
+            }
+        })
+
+        $('#role').change(function () {
+
+            xhrSend = $.ajax({
+                type: 'POST',
+                url: "{{ path('ajax_get_role_permissions') }}",
+                data: {
+                    role: $(this).val()
+                },
+                beforeSend: function () {
+                    if (xhrSend != null) {
+                        xhrSend.abort()
+                    }
+                },
+                success: function (data) {
+                    objects = data;
+                    $("#resultat_body tr").remove();
+                    data.forEach((element) => {
+                        insertTable(element)
+                    })
+                    $('#success-alert').show(500)
+                    setTimeout(() => {
+                        $('#success-alert').hide(500)
+                    }, 3000)
+                },
+                error: function () {
+                    // alert('La requête n\'a pas abouti');
+                }
+            });
+
+        })
+
+        $('#role').trigger("change");
+
+    </script>
+
+{% endblock %}
+

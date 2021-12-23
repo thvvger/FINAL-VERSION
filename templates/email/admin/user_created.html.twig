@@ -1,0 +1,42 @@
+
+{% extends "email/baseEmail.html.twig" %}
+
+{% block title %}
+    <h5 style="margin-top: 3%;padding-right: 35px;padding-left:35px;"><i class="fa fa-building" aria-hidden="true"></i>
+        WatchGuard / <i class="fa fa-microchip" aria-hidden="true"></i> Notifications système /</h5>
+
+{% endblock %}
+{% block content %}
+
+    <h2>Hey {{ user.nom ~ " "~ user.prenom}}  , 👋</h2>
+
+    <p> Nous sommes ravis de vous annoncé que vous avez une nouvelle inscription sur <b>Iso-Sono AI</b> votre platforme
+        de sonoristion intuitive pour PME et Grande entreprise.</p>
+
+    <table>
+        <tr>
+            <p>
+            <h3 style="text-align:center;"><b> Nouvelle inscription!</b>  </h3>
+
+                    <td align="center">
+                        <p>
+                            User: <b> {{ user.nom ~ " "~ user.prenom }}</b> | Organisation: <b> {{ user.organisation}}</b><br>
+                            Compte: <b>{{ user.roles|join(',') }}</b> | Identifiant: <b>{{user.email}}</b>
+
+                        </p>
+                        <p>
+                            <a href="{{ path('organisation_show', {'id':user.organisation.id}) }}" class="button"><i class="fa fa-building" aria-hidden="true"></i>
+                                Consulter l'organisation</a>
+                        </p>
+                    </td>
+        </tr>
+    </table>
+
+
+
+    <p style="text-align:center;"><em style="font-weight:thiner; font-size:12px;"><i class="fa fa-exclamation-circle"
+                                                                                     aria-hidden="true"></i>
+            IMPORTANT: Ce mail est réservé aux administrateurs d'organisation uniquement</em></p>
+
+
+{% endblock %}

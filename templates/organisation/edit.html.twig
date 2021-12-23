@@ -1,0 +1,261 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enregistrer une Organisation{% endblock %}
+
+{% block pageTitle %}Créer une organisation{% endblock %}
+{% block  stylesheet %}
+    {{ parent() }}
+    <style>
+        body {
+            color: #000;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Information de l'entreprise</h1>
+                    <h6 class="card-subtitle text-muted"></h6>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="row">
+
+                        <div class="col-12 col-xl-6">
+                            <div class="mb-3">
+                                <label class="form-label">Raison sociale</label>
+                                <div class="input-group date" id="datetimepicker-minimum"
+                                     data-target-input="nearest">
+                                    {{ form_widget(form.raison_social ) }}
+                                    <span class="text-danger">{{ form_errors(form.raison_social) }}</span>
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Url du site </label>
+                                <div class="input-group date" id="datetimepicker-minimum"
+                                     data-target-input="nearest">
+                                    {{ form_widget(form.url ) }}
+                                    <span class="text-danger">{{ form_errors(form.url) }}</span>
+                                </div>
+                            </div>
+
+                            {# <div class="mb-3"> #}
+                            {# <label class="form-label w-100">Logo Organisation</label> #}
+                            {# {{ form_widget(form.imageFile ) }} #}
+                            {# <span class="text-danger">{{ form_errors(form.imageFile) }}</span> #}
+                            {# <small class="form-text d-block text-muted">Logo de l'organisation : Maximum #}
+                            {#- 500px x 500px #}
+                            {# </small> #}
+                            {# </div> #}
+
+
+                        </div>
+
+
+                        <div class="col-12 col-xl-6">
+
+                            <div class="mb-3">
+                                <label class="form-label">Secteur d'activité</label>
+                                <div class="input-group date" id="datetimepicker-minimum"
+                                     data-target-input="nearest">
+
+
+                                    {{ form_widget(form.secteurActivite ) }}
+                                    <span class="text-danger">{{ form_errors(form.secteurActivite) }}</span>
+
+                                    {# #}
+                                    {# <select class="form-select form-select-lg mb-3"> #}
+                                    {# <option>Choisir...</option> #}
+                                    {# <option>Propreté & Hygiéne</option> #}
+                                    {# <option>BTP</option> #}
+                                    {# <option>Transport & logistique</option> #}
+                                    {# <option>Medical & Paramedical</option> #}
+                                    {# <option>GMS</option> #}
+                                    {# <option>Industrie automobile</option> #}
+                                    {# </select> #}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label w-100">Background Organisation</label>
+                                {{ form_widget(form.backgroundImageFile ) }}
+                                <span class="text-danger">{{ form_errors(form.backgroundImageFile) }}</span>
+                                <small class="form-text d-block text-muted">Background de l'organisation:
+                                    Maximum - 3840 x 2160
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-12">
+                            <div class="mb-3">
+                                <label class="form-label">Biographie: 144 caracteres maximum</label>
+                                <div class="input-group date" id="datetimepicker-minimum"
+                                     data-target-input="nearest">
+                                    {{ form_widget(form.biographie ) }}
+                                    <span class="text-danger">{{ form_errors(form.biographie) }}</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h1>Configuration du compte</h1>
+                            <h6 class="card-subtitle text-muted"></h6>
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-12 col-xl-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Limite des requetes</label>
+                                        <div class="input-group date" id="datetimepicker-minimum"
+                                             data-target-input="nearest">
+
+                                            {{ form_widget(form.limite_requete ) }}
+                                            <span class="text-danger">{{ form_errors(form.limite_requete) }}</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre d'utilisateur</label>
+                                        <div class="input-group date" id="datetimepicker-minimum"
+                                             data-target-input="nearest">
+
+                                            {{ form_widget(form.nombreUtilisateur ) }}
+                                            <span class="text-danger">{{ form_errors(form.nombreUtilisateur ) }}</span>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-12 col-xl-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Type de bouton </label>
+                                        <div class="input-group date" id="datetimepicker-minimum"
+                                             data-target-input="nearest">
+                                            {{ form_widget(form.type_bouton ) }}
+                                            <span class="text-danger">{{ form_errors(form.type_bouton   ) }}</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <label class="form-label">Type de sonorisation</label>
+                                        <div class="input-group date" id="datetimepicker-minimum"
+                                             data-target-input="nearest">
+
+                                            {{ form_widget(form.typeSonorisation ) }}
+                                            <span class="text-danger">{{ form_errors(form.typeSonorisation) }}</span>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label w-100">Selecteur</label>
+                                    {{ form_widget(form.selecteur ) }}
+                                    <span class="text-danger">{{ form_errors(form.selecteur) }}</span>
+                                </div>
+
+                                <div class="card-header">
+                                    <h1>Configuration du compte</h1>
+                                    <h6 class="card-subtitle text-muted"></h6>
+                                </div>
+
+
+                                <div class="card-body">
+                                    {# <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="label"> Route</label>
+                                            <input type="text" class="route form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="label"> Nom d'utilisateur</label>
+                                            <input type="text" class="nom form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="label"> mot de passe</label>
+                                            <input type="text" class="password form-control">
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <label for="">&nbsp; </label><br>
+                                            <button type="button" class="btn btn-primary generateToken">Generer</button>
+                                        </div>
+                                    </div>
+                                    <br> #}
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="form-label w-100">Lien de récupération des
+                                                    annonces</label>
+                                                {{ form_widget(form.apiLink ) }}
+                                                <span class="text-danger">{{ form_errors(form.apiLink) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12" style="text-align: center;">
+                                        <button
+                                                class="btn btn-primary btn-lg btn-block"
+                                                style="margin:0.5rem;">Modifier l'organisation
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12" style="text-align: center;">
+                                        <button type="button" class="btn btn-danger btn-lg btn-block"
+                                                style="margin:0.5rem;">Annuler le processus
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block  javascripts %}
+    {{ parent() }}
+
+
+    <script>
+        $(".generateToken").on("click", function () {
+
+            $.ajax({
+                url: `{{ path('generate_token') }}`,
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                data: {
+                    username: $('.nom').val(),
+                    password: $('.password').val(),
+                    route: $('.route').val()
+                },
+                success: function (data, status) {
+
+                    $('.linkHolder').val(data)
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $('.linkHolder').val(xhr.responseText)
+                }
+            });
+        });
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}New User{% endblock %}#}
+
+{% block pageTitle %} Créer  un utilisateur{% endblock %}
+{% block body %}
+        <div class="card">
+                <div class="card-body container-fluid">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                {#<h1 style="color: blue;">Créer un utilisateur [Super ADMIN]</h1>#}
+                                <span style="color: #000;">Merci de renseigner de créer une organisation et son admin avant de creer un utilisateur supplémentaire</span>
+                                <br>
+                                <br>
+                                <h1 style="">Informations de l'utilisateur</h1>
+
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row    d-flex justify-content-center  ">
+
+                        <div class="col-md-6  text-center">
+                            <label class="text-center">Status</label>
+                            {{ form_widget(form.is_active ) }}
+                            <span class="text-danger">{{ form_errors(form.is_active) }}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+{#                        <div class="col-md-6 col-sm-12">#}
+{#                            <h5 style="font-weight: bold;">Ref. Utilsateur</h5>#}
+{#                            <div class="input-group">#}
+
+{#                                <input type="text" class="form-control" placeholder="Générez la référence unique de l'utilisateur" aria-label="Générez la référence unique de l'utilisateur" aria-describedby="button-addon4">#}
+{#                                <div class="input-group-append" id="button-addon4">#}
+{#                                    <button class="btn btn-outline-primary" type="button"><b>Générez référence</b></button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+
+
+                        <div class="col-md-6">
+                            <label class="text-center">Nom</label>
+                            {{ form_widget(form.nom ) }}
+                            <span class="text-danger">{{ form_errors(form.nom) }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-center">Prenom</label>
+                            {{ form_widget(form.prenom ) }}
+                            <span class="text-danger">{{ form_errors(form.prenom) }}</span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="text-center">Téléphone</label>
+                            {{ form_widget(form.telephone ) }}
+                            <span class="text-danger">{{ form_errors(form.telephone) }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-center">Email</label>
+                            {{ form_widget(form.email ) }}
+                            <span class="text-danger">{{ form_errors(form.email) }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-center">Fonction</label>
+                            {{ form_widget(form.fonction ) }}
+                            <span class="text-danger">{{ form_errors(form.fonction) }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-center">organisation</label>
+                            {{ form_widget(form.organisation ) }}
+                            <span class="text-danger">{{ form_errors(form.organisation) }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <h1 style=";">Privilèges de utilisateur</h1>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{form_widget(form.userRole)}}
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            {#<label class="weight-600">Fonctions accessibles</label>#}
+                            <div class="custom-control custom-checkbox mb-5">
+                                {{ form_widget(form.isOrganisationAdmin ) }}
+                                <span class="text-danger">{{ form_errors(form.isOrganisationAdmin   ) }}</span>
+{#                                <label class="custom-control-label" for="customCheck2">Administrateur d'organisation</label>#}
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <h5 style="font-weight: bold;">Image du dashboard (Logo)</h5>
+
+                                <div class="custom-file">
+                                    {{ form_widget(form.imageFile ) }}
+                                    {#<label class="custom-file-label">Choisir l'image</label>#}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <h5 style="font-weight: bold;">Biographie de l'utilisateur</h5>
+                                <textarea class="form-control" placeholder="Biographie de l'utilisateur"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <button id="sa-params" type="submit" class="btn btn-primary btn-lg btn-block" style="margin: 0.5rem;">Valider</button>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <button type="button" class="btn btn-danger btn-lg btn-block" style="margin:0.5rem;">Annuler</button>
+                        </div>
+
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+{% endblock %}

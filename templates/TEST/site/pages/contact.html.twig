@@ -1,0 +1,256 @@
+{% extends 'site/base.html.twig' %}
+
+{% block breadcrumb %}
+    <aside>
+        <nav id="breadcrumb" class="w1200 marge-auto clearfix">
+            <ul class="breadcrumbs" itemscope itemtype="//schema.org/BreadcrumbList">
+                <li>Vous êtes ici :</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="index.html"><span
+                                itemprop="name">Accueil</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="#"><span
+                                itemprop="name">Qui sommes nous ?</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem">
+                    <span itemprop="name">
+                        Contact</span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="clearfix w1200 marge-auto fleft mt0 relative" id="contact-detail">
+
+        <aside id="edito-aside" class="clearfix w280 fleft aside">
+            <div class="clearfix coordonnees">
+
+                <span class="logo-lamotte clearfix"></span>
+                <section id="block-block-3" class="block block-block clearfix">
+
+
+                    <div class="content">
+                        <address class="adresse-siege clearfix"><strong class="siege">Sarano Immobilier &
+                                Travaux Publics</strong><br/>
+                            11 Avenue de la libération <br/>Cotonou - Bénin
+                        </address>
+
+                        <div class="clearfix fleft numero tel"><span class="ico ico-tel"> </span>Tél. 91 11 09
+                            09
+                        </div>
+
+                        <div class="clearfix fleft numero tel"><span class="ico ico-tel"> </span>Tél. 91 11 09
+                            09
+                        </div>
+
+                        <p class="horaires">Ouvert du lundi au vendredi<br/>
+                            de 9h à 12h15 et de 15h à 18h15.</p>
+                    </div>
+                </section>
+            </div>
+            <aside id="edito-aside" class="clearfix w280 fleft">
+                <header onclick="$(this).toggleClass('expanded');">Menu</header>
+                <nav class="edito-nav">
+                    <span class="triangle"></span>
+                    <ul class="edito-nav-list">
+                        <li class="rub-bord"><a href="{{ path('publier_offre') }}" class="link">Publier une offre</a>
+                        </li>
+                        <li class="rub-bord"><a href="{{ path('contact') }}" class="link active">Contactez-nous</a></li>
+
+                    </ul>
+                </nav>
+            </aside>
+
+
+        </aside>
+
+
+        <div id="contact-content" class="clearfix fright">
+            <div class="region region-content">
+                <section id="block-system-main" class="block block-system clearfix">
+
+
+                    <div class="content">
+                        {{ form_start(form, {'attr':{'id': 'contact-form', 'class':'clearfix'}}) }}
+                        {#<form class="clearfix" enctype="multipart/form-data" id="contact-form"#}
+                        {#method="post" accept-charset="UTF-8">#}
+                        <div>
+                            <div class="clearfix relative heading">
+                                <h2 class="clearfix title">Vous souhaitez <span
+                                            class="rouge">prendre contact ?</span>
+                                </h2>
+                                <div class="clearfix objet-demande form-field">
+                                    <label for="objet" class="label">Votre demande concerne : </label>
+                                    <div class="uniform form-item form-field relative webform-component webform-component-select"
+                                         id="webform-component-votre-demande-concerne">
+
+                                        {{ form_widget(form.sujet, {'attr':{'class':'uniform form-select'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-form clearfix">
+                                <div class="civilite radios clearfix form-item form-field relative webform-component webform-component-radios"
+                                     id="webform-component-civilite">
+                                    <label for="edit-submitted-civilite" class="label">Civilité</label>
+                                    <ul id="edit-submitted-civilite"
+                                        class="form-radios civilite radios clearfix">
+                                        <li class='clearfix'><label class='radio-label'>
+                                                <input class="uniform form-radio" type="radio"
+                                                       name="civilite"
+                                                       value="Madame"/>Mme</label></li>
+                                        <li class='clearfix'><label class='radio-label'><input
+                                                        class="uniform form-radio" type="radio"
+                                                        name="civilite"
+                                                        value="Monsieur"/>M.</label></li>
+                                    </ul>
+                                    <span class="rouge fright">*</span>
+                                </div>
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-nom">
+                                    <label for="nom" class="label">Nom</label>
+                                    {#<input type="text" id="nom" name="nom"#}
+                                           {#value="" size="60" maxlength="128"#}
+                                           {#class="form-text required input"/>#}
+                                    {{ form_widget(form.nom, {'attr':{'class':'form-text required input'}}) }}
+
+                                    <span class="rouge fright">*</span></div>
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="prenom">
+                                    <label for="prenom" class="label">Prénom</label>
+                                    {#<input type="text" id="prenom" name="prenom"#}
+                                           {#value="" size="60" maxlength="128" class="form-text input"/>#}
+                                    {{ form_widget(form.prenom, {'attr':{'class':'form-text required input'}}) }}
+                                    <span class="rouge fright">*</span>
+                                </div>
+                                <div class="clearfix form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-code-postal">
+                                    <label for="codePostal" class="label">Code
+                                        postal</label>
+                                    {#<input class="clearfix form-text required input" type="text"#}
+                                           {#id="codePostal" name="codePostal"#}
+                                           {#value="" size="60" maxlength="128"/>#}
+                                    {{ form_widget(form.codePostal, {'attr':{'class':'form-text required input'}}) }}
+
+                                </div>
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="ville">
+                                    <label for="ville" class="label">Ville</label>
+                                    {#<input type="text" id="ville" name="ville"#}
+                                           {#value="" size="60" maxlength="128"#}
+                                           {#class="form-text required input"/>#}
+                                    {{ form_widget(form.ville, {'attr': {'class': 'form-text input villeClient', 'list':'villeClient-datalist', 'placeholder': 'Saisissez au moins 3 caractères'}}) }}
+                                    <datalist id="villeClient-datalist"></datalist>
+
+                                    <span class="rouge fright">*</span></div>
+                            </div>
+                            <div class="clearfix relative pt25 contact-form"><span
+                                        class="absolute clearfix desc"><span class="rouge">*</span><em>champs obligatoires</em></span>
+
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-tel">
+                                    <label for="telephone" class="label">Tél.</label>
+                                    {#<input type="text" id="telephone" name="telephone"#}
+                                           {#value="" size="60" maxlength="128"#}
+                                           {#class="form-text required input"/>#}
+                                    {{ form_widget(form.telephone, {'attr':{'class':'form-text required input'}}) }}
+
+                                    <span class="rouge fright">*</span>
+                                </div>
+                                <div class="input form-item form-field relative webform-component webform-component-email"
+                                     id="webform-component-email">
+                                    <label for="email" class="label">E-mail</label>
+                                    {#<input class="input form-text form-email required" type="email"#}
+                                           {#id="email" name="email" size="60"/>#}
+                                    {{ form_widget(form.email, {'attr':{'class':'form-text required input'}}) }}
+
+                                    <span class="rouge fright">*</span></div>
+
+                            </div>
+                            <div class="clearfix message-comp">
+                                <h1 class="clearfix title">Vous souhaitez <span class="rouge">nous transmettre un message ?</span>
+                                </h1>
+                                <div class="form-item form-field relative webform-component webform-component-textarea"
+                                     id="message">
+                                    <label for="message" class="label">Votre
+                                        message...</label>
+                                    {#<textarea class="form-textarea textarea" id="message"#}
+                                              {#name="message" cols="60" rows="8"></textarea>#}
+                                    {{ form_widget(form.message, {'attr':{'class':'form-textarea textarea'}}) }}
+
+                                </div>
+
+                            </div>
+                            <div class="clearfix offres fleft form-field text_align_center">
+                                <div class="radio-label">
+                                    <div class="form-item form-field relative webform-component webform-component-checkboxes"
+                                         id="webform-component-inscription-offres">
+                                        <div class="form-field form-type-checkbox">
+                                            {#<input type="checkbox" id="edit-submitted-inscription-offres-1"#}
+                                                   {#name="submitted[inscription_offres][1]" value="1"#}
+                                                   {#class="form-checkbox"/>#}
+                                            {{ form_widget(form.mailing, {'attr':{'class':'form-checkbox'}}) }}
+
+                                            <label class="option" for="edit-submitted-inscription-offres-1">
+                                                Je souhaite recevoir les offres SITP par e-mail
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <input type="hidden" name="details[sid]"/>
+                            <input type="hidden" name="details[page_num]" value="1"/>
+                            <input type="hidden" name="details[page_count]" value="1"/>
+                            <input type="hidden" name="details[finished]" value="0"/>
+                            <input type="hidden" name="form_build_id"
+                                   value="form-NHBX1fGMyDNcWdV8nvSXGe6pioNam6LyBIuUsQ2gmgk"/>
+                            <input type="hidden" name="form_id" value="webform_client_form_21"/>
+                            <input class="bouton-envoyer form-submit" type="submit" id="edit-submit"
+                                   name="op" value="Envoyer ma demande"/>
+                            <div class="clearfix infos"><p>Les informations recueillies ci-dessus font
+                                    l'objet d'un traitement informatique et sont utilisées à des fins de gestion
+                                    et de prospection commerciale par la société SITP, la validation de ce
+                                    formulaire vos validations des conditions générale d'utilisation; pour
+                                    traiter vos demandes vous bénéficiez d'un droit d'accès et de rectification
+                                    aux informations qui vous concernent. Vous pouvez exercer ce droit en vous
+                                    adressant par email à SITP contact@sarano-itp.com, ou par couriel à notre
+                                    siège. Vous pouvez également, pour des motifs légitimes, vous opposer au
+                                    traitement des données vous concernant.</p>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                        {#</form>#}
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menuLouer").addClass('current')
+    </script>
+
+    <script src="{{ asset('js/offre.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+
+<div class="row">
+    <form class="row" action="{{ path('user_permission_new') }}" method="post">
+        <div class="col-md-8">
+            <select name="permission" id="permission" class="form-control chosen" required>
+                {% for permission in permissions %}
+                    {% if permission.visible == true %}
+                        <option value="{{ permission.id }}">{{ permission.description }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            <input type="hidden" name="user" value="{{ userId }}">
+        </div>
+        <div class="col-md-2">
+            <button class="form-control btn btn-success" type="submit">Ajouter</button>
+        </div>
+    </form>
+
+</div>
+
+
+<div class="row" style="margin-top: 20px;">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Permission</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for userPermission in userPermissions %}
+            <tr>
+                <td>{% if userPermission.permission %} {{ userPermission.permission.description }} {% endif %}</td>
+                <td>{% if userPermission.permission %}
+                        <a href="{{ path('user_permission_delete', {'id':userPermission.id}) }}" class="btn btn-danger btn-xs">Supprimer</a>
+                    {% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+

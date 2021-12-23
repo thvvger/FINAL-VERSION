@@ -1,0 +1,110 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}Sonoriser une annonce{% endblock %}
+{% block  body %}
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="card-subtitle text-muted"></h6>
+                    </div>
+                    <div class="card-body">
+                        <form enctype="multipart/form-data" action="{{ path('annonce_sonorise_new') }}" class="row" method="post">
+
+                            <div class="col-12 col-xl-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Ref.annonce (Creer l'annonce texte avant de la
+                                        sonoriser)</label>
+                                    <div class="input-group date" id="datetimepicker-minimum"
+                                         data-target-input="nearest">
+                                        <input class="form-control form-control-lg mb-3" readonly type="text"
+                                               value="{{ annonce.reference }}"  name="annonce_reference"
+                                               placeholder="Saisir la référence ...">
+                                    </div>
+                                </div>
+                                {#<div class="mb-3">#}
+                                    {#<label class="form-label">Url de l'annonce </label>#}
+                                    {#<div class="input-group date" id="datetimepicker-minimum"#}
+                                         {#data-target-input="nearest">#}
+                                        {#<input readonly class="form-control form-control-lg mb-3" type="text"#}
+                                               {#name="annonce_url"#}
+                                               {#placeholder="">#}
+                                    {#</div>#}
+                                {#</div>#}
+
+                                <div class="input-group mb-3">
+                                    <label class="form-label">Url du fichier mp3</label>
+                                    <div class="input-group date" id="datetimepicker-minimum"
+                                         data-target-input="nearest">
+                                        <input type="text" value="{{ annonce.annonceSonoLinkHolder }}" class="form-control form-control-lg mb-3"
+                                               name="annonce_sonorise_url_sono"
+                                             id="annonce_sonorise_url_sono"  placeholder="Lien mp3">
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-12 col-xl-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Titre de l'annonce </label>
+                                    <div class="input-group date" id="datetimepicker-minimum"
+                                         data-target-input="nearest">
+                                        <input readonly class="form-control form-control-lg mb-3" type="text"
+                                               value="{{ annonce.titre }}"
+                                               placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Organisation</label>
+                                    <div class="input-group date" id="datetimepicker-minimum"
+                                         data-target-input="nearest">
+                                        <input readonly class="form-control form-control-lg mb-3" type="text"
+                                               value="{{ annonce.organisation.raisonSocial }}"
+                                               placeholder="">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                          
+                            <div class="col-md-12 text-center">
+                                <div class="mb-3 pt-4">
+                                    <button id="sa-params"
+                                            class="btn btn-primary w-100 btn-lg btn-block" style="margin: 0.5rem;">
+                                        Sonoriser l'annonce
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div> 
+{% endblock %}
+
+{% block  javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            $("#submit-type").on('click', function () {
+
+                    var audio = document.getElementById('audio');
+
+                    var source = document.getElementById('audioSource');
+                    source.src = document.getElementById('annonce_sonorise_url_sono').value/* "http://51.77.67.128/tb/1/e4/dj_arafat_gbobolor_clip_officiel_mp3_32559.mp3?play" */;
+                    $('#iframe').val(`<audio id="audio" controls autoplay\>\n\t<source id="audioSource" src="${$('#annonce_sonorise_url_sono').val()}">\n</audio>`);
+                    audio.load(); //call this to just preload the audio without playing
+                    audio.play(); //call this to play the song right away
+                }
+            );
+        });
+
+    </script>
+{% endblock %}

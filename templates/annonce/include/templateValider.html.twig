@@ -1,0 +1,122 @@
+{% set  annoncesSonorises=  annonces %}
+
+
+
+<table  class="table  table-responsive datatables-basic-five  table-striped" style="width:100%">
+
+    <thead>
+    <tr>
+        <th class="d-none">id</th>
+        <th> </th>
+        <th>Titre</th>
+        <th>Upload      </th>
+        <th>Ref.</th>
+        <th>Créa.Date</th>
+        <th style="">Vue(s)</th>
+        <th>Lecture(s)</th>
+        <th>Status</th>
+        <th>Valider?</th>
+        <th class="">Org.</th>
+{#        <th></th>#}
+
+    </tr>
+    </thead>
+    <tbody>
+    {% if annonces|length <1 %}
+        <tr>
+            <td colspan="10">
+                Aucune données
+            </td>
+        </tr>
+    {% else %}
+        {% for annoncesSonorise  in annoncesSonorises %}
+            {% set annonceStat   = get_annone_stats(annoncesSonorise.annonce) %}
+
+            <tr>
+                <td  class="d-none">{{ annoncesSonorise.id }}</td>
+                <td  class="">
+                    <i class="align-middle me-2 fas fa-fw fa-headphones"></i>
+                </td>
+                {#<td  class=" "><i class="fa-file-alt"></i></td>#}
+
+                <td style="font-weight: bolder;">
+                    <a class="text-primary" style="color: #3e4676 !important;" href="{{ path('annonce_show', {'id': annoncesSonorise.annonce.id}) }}">
+                        {{ annoncesSonorise.annonce.titre }}</a>
+                </td>
+                <td>{{ annoncesSonorise.annonce.user.nom ~" "~annoncesSonorise.annonce.user.prenom }}</td>
+
+                <td >{{ annoncesSonorise.annonce.reference }}</td>
+                <td style="font-weight: bolder;">{{ annoncesSonorise.annonce.createdAt|date('d/m/Y') }}</td>
+
+
+                <td style="font-weight: bolder;">{{ annonceStat ? annonceStat.nombreAppelApi : 0}}</td>
+                <td style="font-weight: bolder; " class="text-center"> {{ annonceStat ? (annonceStat.tempsLecture / 60)|round : 0 }} min</td>
+                <td>
+
+                    {% if annoncesSonorise.annonce.status  == 'pending' %}
+
+                        <button class="btn btn-primary btn-warning btn-sm">A traiter</button>
+                    {% elseif annoncesSonorise.annonce.status =='sonorise' %}
+                        <button class="btn btn-primary btn-success btn-sm">Sonorisée</button>
+                    {% else %}
+                        <button class="btn">Expirée/Archivéé</button>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if annoncesSonorise.annonce.estValider is not null %}
+
+                        {% if annoncesSonorise.annonce.estValider == true %}
+                            <button class="btn btn-success   btn-sm">Validée</button>
+                        {% elseif  annoncesSonorise.annonce.estValider ==false %}
+                            <button class="btn btn-danger   btn-sm">Rejetée</button>
+
+                        {% endif %}
+                    {% else %}
+                        <button style="color: orange!important;" class="btn btn-primary   btn-sm">A&nbsp;validée</button>
+                    {% endif %}
+                </td>
+                <td style="font-weight: bolder;">{{ annoncesSonorise.annonce.organisation.raisonSocial }}</td>
+
+            </tr>
+        {% endfor %}
+    {% endif %}
+
+    </tbody>
+</table>
+{#{% for annoncesSonorise  in annoncesSonorises %}#}
+    {#{% set annonceStat   = get_annone_stats(annoncesSonorise.annonce) %}#}
+
+    {#<tr>#}
+        {#<td  class="d-none">{{ annoncesSonorise.id }}</td>#}
+        {#<td  class="">#}
+            {#<i class="align-middle me-2 fas fa-fw fa-headphones"></i>#}
+        {#</td>#}
+        {#<td  class=" "><i class="fa-file-alt"></i></td>#}
+
+        {#<td style="font-weight: bolder;">#}
+            {#<a class="text-primary" style="color: #3e4676 !important;" href="{{ path('annonce_show', {'id': annoncesSonorise.annonce.id}) }}">#}
+                {#{{ annoncesSonorise.annonce.titre }}</a>#}
+        {#</td>#}
+        {#<td>{{ annoncesSonorise.annonce.user.nom ~" "~annoncesSonorise.annonce.user.prenom }}</td>#}
+
+        {#<td >{{ annoncesSonorise.annonce.reference }}</td>#}
+        {#<td style="font-weight: bolder;">{{ annoncesSonorise.annonce.createdAt|date('d/m/Y') }}</td>#}
+
+
+        {#<td style="font-weight: bolder;">{{ annonceStat ? annonceStat.nombreAppelApi : 0}}</td>#}
+        {#<td style="font-weight: bolder; " class="text-center"> {{ annonceStat ? (annonceStat.tempsLecture / 60)|round : 0 }} min</td>#}
+        {#<td>#}
+
+            {#{% if annoncesSonorise.annonce.status  == 'pending' %}#}
+
+                {#<button class="btn btn-primary btn-warning btn-sm">A traiter</button>#}
+            {#{% elseif annoncesSonorise.annonce.status =='sonorise' %}#}
+                {#<button class="btn btn-primary btn-success btn-sm">Sonorisée</button>#}
+            {#{% else %}#}
+                {#<button class="btn">Expirée/Archivéé</button>#}
+            {#{% endif %}#}
+        {#</td>#}
+        {#<td style="font-weight: bolder;">{{ annoncesSonorise.annonce.organisation.raisonSocial }}</td>#}
+
+    {#</tr>#}
+{#{% endfor %}#}

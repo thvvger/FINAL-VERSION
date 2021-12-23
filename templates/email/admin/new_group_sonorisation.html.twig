@@ -1,0 +1,99 @@
+{% extends "email/baseEmail.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 10px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+
+    <h5 style="margin-top: 3%;padding-right: 35px;padding-left:35px;"><i class="fa fa-building"
+                                                                         aria-hidden="true"></i>
+        WatchGuard / <i class="fa fa-headphones"></i> Sonorisation groupée</h5>
+{% endblock %}
+
+{% block content %}
+
+    <h2>Hey Admin 👋</h2>
+
+
+    <p> Les annonces listées ci-dessous ont toutes été sonorisées</p>
+
+    <h3 style="text-align:center;"><b> Sonorisation groupée réussie!</b></h3>
+
+    <table id="customers" class="customers">
+        <thead>
+        <tr>
+            <th>Reference</th>
+            <th>Titre</th>
+            <th>Uploader par</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for annonceSonorise in annonceSonnoriser %}
+            <tr>
+                <td>{{ annonceSonorise.annonce.reference }}</td>
+                <td>{{ annonceSonorise.annonce.titre }}</td>
+                <td>{{ annonceSonorise.annonce.user.fullname }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+
+
+    <p style="text-align:center;">
+        <a href="{{ path('annonce_texte') }}" class="button"><i class="fa fa-headphones"></i>
+            Accéder aux sonorisations</a>
+    </p>
+
+    <table>
+        <tr>
+
+        </tr>
+    </table>
+
+
+    <p style="text-align:center;">
+        <em style="font-weight:thiner; font-size:12px;">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            IMPORTANT: Ce mail est réservé aux administrateurs d'organisation
+            uniquement
+        </em>
+    </p>
+
+{% endblock %}
+
+
+
+
+
+
+

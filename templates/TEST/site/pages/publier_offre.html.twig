@@ -1,0 +1,407 @@
+{% extends 'site/base.html.twig' %}
+
+{% block breadcrumb %}
+    <aside>
+        <nav id="breadcrumb" class="w1200 marge-auto clearfix">
+            <ul class="breadcrumbs" itemscope itemtype="//schema.org/BreadcrumbList">
+                <li>Vous êtes ici :</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="index.html"><span
+                                itemprop="name">Accueil</span></a>
+                    <meta itemprop="position" content="1"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem"><a itemprop="item"
+                                                                                             href="#"><span
+                                itemprop="name">Qui sommes nous ?</span></a>
+                    <meta itemprop="position" content="2"/>
+                </li>
+                <li>&gt;</li>
+                <li itemprop="itemListElement" itemscope itemtype="//schema.org/ListItem">
+                    <span itemprop="name">
+                        Bien à la vente ou à la location</span>
+                    <meta itemprop="position" content="3"/>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+{% endblock %}
+
+{% block content %}
+
+
+    <aside id="edito-aside" class="clearfix w280 fleft">
+        <header onclick="$(this).toggleClass('expanded');">Menu</header>
+        <nav class="edito-nav">
+            <span class="triangle"></span>
+            <ul class="edito-nav-list">
+                <li class="rub-bord"><a href="{{ path('publier_offre') }}" class="link active">Publier une offre</a>
+                </li>
+                <li class="rub-bord"><a href="{{ path('contact') }}" class="link">Contactez-nous</a></li>
+
+            </ul>
+        </nav>
+    </aside>
+
+
+    <div class="clearfix w1200 marge-auto " id="parrainage-detail">
+
+        <aside id="edito-aside" class="clearfix w280 fleft aside">
+            <section id="block-block-4" class="block block-block clearfix">
+            </section>
+        </aside>
+        <div id="parrainage-content" class="clearfix fright">
+
+            <div class="clearfix relative heading">
+                <h2 class="clearfix title">Publier une offre<br/>
+                    <span class="rouge">c'est simple et rapide !</span></h2>
+                <a class="bt-view-all clearfix absolute" href="#" target="_blank"><span
+                            class="ico-download">&nbsp;</span>Télécharger la brochure</a>
+
+                <ul class="clearfix etapes">
+                    <li class="clearfix fleft etape etape-1"><span class="etape-nb fleft">1</span>
+
+                        <p class="text fright">Remplissez le formulaire ci-dessous en précisant vos coordonnées
+                            ainsi que les détails de votre Bien.</p>
+                    </li>
+                    <li class="clearfix fleft etape etape-2"><span class="etape-nb fleft">2</span>
+                        <p class="text fright">Nous prenons contact avec vous en moins de 24h.</p>
+                    </li>
+                    <li class="clearfix fleft etape etape-3"><span class="etape-nb fleft">3</span>
+                        <p class="text fright">Après échange nous publierons votre offre sur notre site web en moins
+                            de 24h.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="region region-content">
+                <section id="block-system-main" class="block block-system clearfix">
+
+
+                    <div class="content">
+                        {{ form_start(form, {'attr': {'id': 'parrainage-form',   'class' : 'clearfix relative', 'enctype' :'multipart/form-data'}} ) }}
+                        {#<form class="clearfix relative" enctype="" id="parrainage-form"#}
+                        {#action="#" method="post" accept-charset="UTF-8">#}
+                        <div class="parrainage-form clearfix">
+                            <fieldset class="clearfix vous fleft form-wrapper"
+                                      id="webform-component-fieldset-vous">
+                                <legend><span class="fieldset-legend"><span class="clearfix title rouge"><span
+                                                    class="ico ico-vous"></span>vos coordonées</span></span></legend>
+                                <div class="fieldset-wrapper">
+                                    <div class="civilite radios clearfix form-item form-field relative webform-component webform-component-radios"
+                                         id="webform-component-fieldset-vous--civilite">
+                                        <label for="edit-submitted-fieldset-vous-civilite"
+                                               class="label">Civilité</label>
+                                        <ul id="edit-submitted-fieldset-vous-civilite"
+                                            class="form-radios civilite radios clearfix">
+                                            <li class='clearfix'><label class='radio-label'><input
+                                                            class="uniform form-radio" type="radio"
+                                                            id="edit-submitted-fieldset-vous-civilite-1"
+                                                            name="clientCivilite" value="Madame"/>Mme</label>
+                                            </li>
+                                            <li class='clearfix'><label class='radio-label'><input
+                                                            class="uniform form-radio" type="radio"
+                                                            id="edit-submitted-fieldset-vous-civilite-2"
+                                                            name="clientCivilite" value="Monsieur"
+                                                    checked
+                                                    />M.</label>
+                                            </li>
+                                        </ul>
+                                        <span class="rouge fright">*</span></div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-vous--nom">
+                                        <label for="edit-submitted-fieldset-vous-nom" class="label">Nom</label>
+                                        {#<input type="text" id="edit-submitted-fieldset-vous-nom"#}
+                                               {#name="submitted[fieldset_vous][nom]" value="" size="60"#}
+                                               {#maxlength="128" class="form-text required input"/>#}
+
+                                        {{ form_widget(form.client.nom, {'attr': {'class': 'form-text input'}}) }}
+
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-vous--prenom">
+                                        <label for="edit-submitted-fieldset-vous-prenom"
+                                               class="label">Prénom</label>
+                                        {#<input type="text" id="edit-submitted-fieldset-vous-prenom"#}
+                                               {#name="submitted[fieldset_vous][prenom]" value="" size="60"#}
+                                               {#maxlength="128" class="form-text required input"/>#}
+                                        {{ form_widget(form.client.prenom, {'attr': {'class': 'form-text input'}}) }}
+
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+                                    <div class="clearfix form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-vous--code-postal">
+                                        <label for="edit-submitted-fieldset-vous-code-postal" class="label">Adresse                                            postal</label>
+                                        {#<input class="clearfix form-text required input" type="text"#}
+                                               {#id="edit-submitted-fieldset-vous-code-postal"#}
+                                               {#name="submitted[fieldset_vous][code_postal]" value="" size="60"#}
+                                               {#maxlength="128"/>#}
+                                        {{ form_widget(form.client.addresse, {'attr': {'class': 'form-text input'}}) }}
+
+                                        {#<span class="rouge fright">*</span>#}
+                                    </div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-vous--ville">
+                                        <label for="edit-submitted-fieldset-vous-ville"
+                                               class="label">Ville</label>
+                                        {#<input type="text" id="edit-submitted-fieldset-vous-ville"#}
+                                               {#name="submitted[fieldset_vous][ville]" value="" size="60"#}
+                                               {#maxlength="128" class="form-text required input"/>#}
+                                        {{ form_widget(form.client.ville, {'attr': {'class': 'form-text input villeClient', 'list':'villeClient-datalist', 'placeholder': 'Saisissez au moins 3 caractères'}}) }}
+
+                                        <span class="rouge fright">*</span>
+
+                                        <datalist id="villeClient-datalist"></datalist>
+
+                                    </div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-vous--telephone">
+                                        <label for="edit-submitted-fieldset-vous-telephone"
+                                               class="label">Tél.</label>
+                                        {#<input type="text" id="edit-submitted-fieldset-vous-telephone"#}
+                                               {#name="submitted[fieldset_vous][telephone]" value="" size="60"#}
+                                               {#maxlength="128" class="form-text required input"/>#}
+                                        {{ form_widget(form.client.telephone, {'attr': {'class': 'form-text input'}}) }}
+
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-vous--nom">
+                                        <label for="edit-submitted-fieldset-vous-nom" class="label">Profession</label>
+                                        {#<input type="text" id="edit-submitted-fieldset-vous-nom"#}
+                                        {#name="submitted[fieldset_vous][nom]" value="" size="60"#}
+                                        {#maxlength="128" class="form-text required input"/>#}
+
+                                        {{ form_widget(form.client.profession, {'attr': {'class': 'form-text input'}}) }}
+
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+                                    <div class="input form-item form-field relative webform-component webform-component-email"
+                                         id="webform-component-fieldset-vous--email">
+                                        <label for="edit-submitted-fieldset-vous-email"
+                                               class="label">Email</label>
+                                        {#<input class="input form-text form-email required" type="email"#}
+                                               {#id="edit-submitted-fieldset-vous-email"#}
+                                               {#name="submitted[fieldset_vous][email]" size="60"/>#}
+                                        {{ form_widget(form.client.email, {'attr': {'class': 'form-text form-email input'}}) }}
+
+                                        {#<span class="rouge fright">*</span>#}
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+
+                            <fieldset class="clearfix votre-filleul fright form-wrapper"
+                                      id="webform-component-fieldset-filleul">
+                                <legend><span class="fieldset-legend"><span class="clearfix title rouge"><span
+                                                    class="ico ico-votre-filleul"></span>Votre offre </span></span>
+                                </legend>
+                                <div class="fieldset-wrapper">
+                                    <div class="civilite radios clearfix form-item form-field relative webform-component webform-component-radios"
+                                         id="webform-component-fieldset-filleul--filleul-civilite">
+                                        <label for="edit-submitted-fieldset-filleul-filleul-civilite"
+                                               class="label">Bien
+                                        </label>
+                                        <ul id="edit-submitted-fieldset-filleul-filleul-civilite"
+                                            class="form-radios civilite radios clearfix">
+                                            <li class='clearfix'>
+                                                <label class='radio-label'>
+                                                    <input
+                                                            class="uniform form-radio" type="radio"
+                                                            name="typeOffre"
+                                                            checked
+                                                            value="LOUER"/>A louer</label>
+                                            </li>
+                                            <li class='clearfix'><label class='radio-label'>
+                                                    <input
+                                                            class="uniform form-radio" type="radio"
+                                                            name="typeOffre"
+                                                            value="VENDRE"/>A vendre</label>
+                                            </li>
+                                        </ul>
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-filleul--filleul-telephone">
+                                        <label for="edit-submitted-fieldset-filleul-filleul-telephone"
+                                               class="label">Nature de bien</label>
+                                        {{ form_widget(form.natureBien, {'attr': {'class': 'form-text input', 'style': 'width: 230px'}}) }}
+                                        {#{{ form_widget(form.nombrePieces, {'attr': {'class':'form-text required input', 'style':'width: 230px;'}}) }}#}
+
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-filleul--filleul-nom">
+                                        <label for="edit-submitted-fieldset-filleul-filleul-nom" class="label">Type
+                                            de bien</label>
+                                        {{ form_widget(form.typeBien, {'attr': {'class' : 'form-text required input', 'style': 'width: 230px'}}) }}
+
+
+                                        {#<select style="width: 230px;" name="type_bien" id="" required#}
+                                        {#class="form-text required input">#}
+                                        {#<option value="">---Sélectionné---</option>#}
+                                        {#<option value="APP_NON_MEUBLE">Appartement non meublé</option>#}
+                                        {#<option value="APP_MEUBLE">Appartement meublé</option>#}
+                                        {#<option value="VILLA_MAISON">Villa/Maison</option>#}
+                                        {#<option value="PARCELLE">Parcelle</option>#}
+                                        {#<option value="BOUTIQUE">Boutique</option>#}
+                                        {#<option value="EXP_BUREAU">Expace Bureau</option>#}
+                                        {#</select>#}
+                                        <span class="rouge fright">*</span></div>
+
+                                    <div class="form-item form-field relative webform-component webform-component-textfield"
+                                         id="webform-component-fieldset-filleul--filleul-prenom">
+                                        <label for="edit-submitted-fieldset-filleul-filleul-prenom"
+                                               class="label">Etat du Bien</label>
+                                        {#<input type="text" id="edit-submitted-fieldset-filleul-filleul-prenom"#}
+                                        {#required name="etat_bien" value="" size="60" maxlength="128"#}
+                                        {#class="form-text required input"/>#}
+                                        {{ form_widget(form.etatBien, {'attr': {'class': 'form-text input', 'style': 'width: 230px'}}) }}
+
+                                        <span class="rouge fright">*</span>
+                                    </div>
+
+
+
+                                </div>
+
+
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-fieldset-vous--telephone">
+                                    <label for="edit-submitted-fieldset-vous-telephone"
+                                           class="label">Département</label>
+
+                                    {{ form_widget(form.departement, {'attr': {'class': 'form-text required input departement', 'style': 'width: 230px;'}}) }}
+
+                                    <span class="rouge fright">*</span>
+                                </div>
+
+
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-fieldset-filleul--filleul-ville">
+                                    <label for="edit-submitted-fieldset-filleul-filleul-ville"
+                                           class="label">Ville</label>
+
+                                    {{ form_widget(form.villeString, {'attr': {'class':'form-text required input ville', 'size':'60', '':'128', 'list':'ville-datalist', 'placeholder': 'Saisissez au moins 3 caractères'}}) }}
+
+                                    <span class="rouge fright">*</span>
+                                </div>
+                                <datalist id="ville-datalist"></datalist>
+
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-fieldset-filleul--filleul-ville">
+                                    <label for="edit-submitted-fieldset-filleul-filleul-ville"
+                                           class="label">Arrondissement</label>
+
+                                    {{ form_widget(form.arrondissementString, {'attr': {'class':'form-text required input arrondissement', 'size':'60', '':'128', 'list':'arrondissement-datalist', 'placeholder': 'Saisissez au moins 3 caractères'}}) }}
+
+                                    <span class="rouge fright">*</span>
+                                </div>
+                                <datalist id="arrondissement-datalist"></datalist>
+
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="webform-component-fieldset-filleul--filleul-ville">
+                                    <label for="edit-submitted-fieldset-filleul-filleul-ville"
+                                           class="label">Quartier</label>
+
+                                    {{ form_widget(form.quartierString, {'attr': {'class':'form-text required input quartier', 'size':'60', '':'128', 'list':'quartier-datalist', 'placeholder': 'Saisissez au moins 3 caractères'}}) }}
+
+                                    <span class="rouge fright">*</span>
+                                </div>
+                                <datalist id="quartier-datalist"></datalist>
+
+
+                                {#</div>#}
+
+                                <div class="form-item form-field relative webform-component webform-component-textfield"
+                                     id="img1">
+                                    <label for="img1" class="label">Images</label>
+                                    {{ form_widget(form.images) }}
+                                    {#<input type="file" id="inputFileToLoad1" name="image1" required#}
+                                           {#accept="image/png, image/jpeg" onchange="encodeImageFileAsURL1();">#}
+                                    {#<span class="rouge fright">*</span>#}
+                                </div>
+                                </br>
+
+                                {#<div class="form-item form-field relative webform-component webform-component-textfield"#}
+                                     {#id="img2">#}
+                                    {#<label for="img2" class="label">Image 2</label>#}
+                                    {#{{ form_widget(form.image2) }}#}
+
+                                    {#<span class="rouge fright">*</span>#}
+                                {#</div>#}
+
+
+                            </fieldset>
+                        </div>
+                        {#<span class="fright clearfix desc"><span#}
+                        {#class="rouge">*</span><em>champs obligatoires</em>#}
+                        {#</span>#}
+                        {#<div class="clearfix offres fleft form-field text_align_center">#}
+                        {#<label#}
+                        {#class="radio-label">#}
+                        {#<div class="form-item form-field relative webform-component webform-component-checkboxes"#}
+                        {#id="webform-component-filleul-inscription-offres">#}
+                        {#<ul class="clearfix ">#}
+                        {#<li class="clearfix">#}
+                        {#<div class="form-field form-type-checkbox">#}
+                        {#<input type="checkbox"#}
+                        {#id="edit-submitted-filleul-inscription-offres-1"#}
+                        {#name="submitted[filleul_inscription_offres][1]" value="1"#}
+                        {#class="form-checkbox"/> <label class="option"#}
+                        {#for="edit-submitted-filleul-inscription-offres-1">Je#}
+                        {#souhaite recevoir les offres de SITP</label></div>#}
+                        {#</li>#}
+                        {#</ul>#}
+                        {#</div>#}
+                        {#</div>#}
+
+                        <div class="form-actions form-wrapper" id="edit-actions"><input
+                                    class="bouton-envoyer form-submit" type="submit" id="edit-submit" name="op"
+                                    value="Envoyer mon offre"/>
+                        </div>
+                        <div class="clearfix infos"><p>Les informations recueillies ci-dessus font l'objet
+                                d'un traitement informatique et sont utilisées à des fins de gestion et de
+                                prospection commerciale par la société SITP, la validation de ce formulaire vos
+                                validations des conditions générale d'utilisation; pour traiter vos demandes
+                                vous bénéficiez d'un droit d'accès et de rectification aux informations qui vous
+                                concernent. Vous pouvez exercer ce droit en vous adressant par email à SITP
+                                contact@sarano-itp.com, ou par couriel à notre siège. Vous pouvez également,
+                                pour des motifs légitimes, vous opposer au traitement des données vous
+                                concernant.</p>
+                        </div>
+                        {#</div>#}
+                        {#</form>#}
+                        {{ form_end(form) }}
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $("#menuLouer").addClass('current')
+    </script>
+
+    <script src="{{ asset('js/offre.js') }}">
+    </script>
+
+{% endblock %}
